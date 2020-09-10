@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import bswanepo.character.CreateCharacterPanel;
+import bswanepo.character.HeroCreatedPanel;
 import bswanepo.character.MainCharacterPanel;
 import bswanepo.character.SelectCharacterPanel;
 import bswanepo.mainMenu.MainMenuPanel;
@@ -24,6 +25,7 @@ public class Display {
 	private JPanel panelCharacter;
 	private JPanel menuCharacterPanel;
 	private JPanel selectCharacterPanel;
+	private JPanel heroCreatedPanel;
 
 	private JPanel createCharacterPanel;
 	public static CardLayout cl;
@@ -50,6 +52,7 @@ public class Display {
 		menuCharacterPanel = new JPanel();
 		selectCharacterPanel = new JPanel();
 		createCharacterPanel = new JPanel();
+		heroCreatedPanel = new JPanel();
 		
 
 		panelCont.setLayout(cl);
@@ -61,7 +64,7 @@ public class Display {
 		panelCont.add(panelMenu, "menuPanel");
 		// cl.show(panelCont,"2");
 
-		//Character main panel
+		//Character main panels
 		MainCharacterPanel characterMenu = new MainCharacterPanel(width, height);
 		menuCharacterPanel = characterMenu;
 		panelCont.add(menuCharacterPanel, "menuCharacterPanel");
@@ -73,6 +76,10 @@ public class Display {
 		CreateCharacterPanel createCharacter = new CreateCharacterPanel(width, height);
 		createCharacterPanel = createCharacter;
 		panelCont.add(createCharacterPanel, "createCharacterPanel");
+
+		HeroCreatedPanel HeroCreated = new HeroCreatedPanel(width, height);
+		heroCreatedPanel = HeroCreated;
+		panelCont.add(heroCreatedPanel, "heroCreatedPanel");
 		// cl.show(panelCont,"1");
 
 		// cl.show(panelCont,"1");

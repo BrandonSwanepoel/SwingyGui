@@ -10,21 +10,24 @@ import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.awt.CardLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.GroupLayout.Alignment;
 
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-
+import java.awt.Rectangle;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.CardLayout;
 
 import java.awt.Font;
-
+import java.awt.*;
+import javax.swing.*;
 import java.awt.Canvas;
 import bswanepo.Game;
 import bswanepo.Handler;
@@ -33,9 +36,9 @@ import bswanepo.display.Display;
 
 public class MainMenuPanel extends JPanel{
 
-    private Font titleFont = Game.main.deriveFont(45f);
+    private Font titleFont = Game.main.deriveFont(70f);
     private Font creatorFont = Game.main.deriveFont(10f);
-    private String title = "Swingy";
+    private String title = "Swingy\n";
     private String creator = "By Brandon Swanepoel";
     private int buttonWidth = 220;
     private int spacing = 90;
@@ -51,18 +54,22 @@ public class MainMenuPanel extends JPanel{
     private JLabel label;
     public static JButton playButton;
     public static JButton quitButton;
-
+    public JLabel logo;
     private Handler handler;
     public MainMenuPanel(int canvasWidth, int canvasHeight) {
-        // render(g);
+        new GridLayout(3, 1, 8, 8);
+        logo = new JLabel(title);
+        logo.setFont(titleFont);
+        this.setLayout(new GridBagLayout());
+        this.add(logo);
 
-        
+        this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         // super.addMouseListener(this);
         this.setPreferredSize(new Dimension(canvasWidth, canvasHeight));
         this.setMaximumSize(new Dimension(canvasWidth, canvasHeight));
         this.setMinimumSize(new Dimension(canvasWidth, canvasHeight));
-        this.setBackground(Color.blue);
+        this.setBackground(Color.gray);
         this.setFocusable(false);
         // playButton = new GuiButton(550 / 2 - buttonWidth / 2, buttonWidth, buttonWidth, buttonHeight);
         // quitButton = new GuiButton(550 / 2 - buttonWidth / 2, playButton.getY() + spacing, buttonWidth, buttonHeight);
@@ -104,6 +111,7 @@ public class MainMenuPanel extends JPanel{
         });
         this.add(playButton);
         this.add(quitButton);
+        this.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
         // label = new JLabel();
         // label.setFont(titleFont);
         // label.setBackground(Color.WHITE);

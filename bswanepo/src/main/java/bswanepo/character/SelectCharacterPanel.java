@@ -25,10 +25,10 @@ import bswanepo.gfx.Assets;
 public class SelectCharacterPanel extends JPanel {
 
     private Font titleFont = Game.main.deriveFont(40f);
-    private String title = "Select Character";
+    
     private Handler handler;
     private JList j1;
-    private JList j2;
+    
 
     private String clickedHeroName;
     JPanel jsp1 = new JPanel();
@@ -48,6 +48,7 @@ public class SelectCharacterPanel extends JPanel {
         this.setMinimumSize(new Dimension(canvasWidth, canvasHeight));
         this.setBackground(Color.white);
 
+        
         JPanel selectPanel = new JPanel();
         Assets assets = new Assets();
         ArrayList<String> entries = assets.loadCharactersNames();
@@ -106,16 +107,12 @@ public class SelectCharacterPanel extends JPanel {
         startGameButton.setText("Start Game");
         backButton.setText("Back");
 
+        //Button action
         startGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Display.cl.show(Display.panelCont, "selectCharacterPanel");
-
-                // screen.add("SelectCharacter", new
-                // SelectCharacterPanel(canvasWidth,canvasHeight));
-                // screen.setCurrentPanle("SelectCharacter");
-                // screen.update();
-                // remove(backButton);
+               
                 if (clickedHeroName != null) {
                     Game game = new Game("Swingy", canvasWidth, canvasHeight);
                     handler = new Handler(game);
@@ -131,13 +128,9 @@ public class SelectCharacterPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Display.cl.show(Display.panelCont, "menuCharacterPanel");
-
-                // screen.add("Menu", new MainMenuPanel(canvasWidth,canvasHeight));
-                // screen.setCurrentPanle("Menu");
-                // screen.update();
-                // remove(backButton);
             }
         });
+        //Adding button to JPanel
         this.add(startGameButton);
         this.add(backButton);
 
@@ -156,14 +149,6 @@ public class SelectCharacterPanel extends JPanel {
                 specValueField.setText(heroSpecs);
             }
         }
-    }
-
-    // @Override
-    public void render(Graphics2D g) {
-        // super.render(g);
-        g.setFont(titleFont);
-        g.setColor(Color.white);
-        g.drawString(title, 100, 100);
     }
 
 }

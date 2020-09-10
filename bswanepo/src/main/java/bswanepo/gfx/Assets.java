@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,4 +88,38 @@ public class Assets {
 		return heroSpecs;
 	}
 
+	public void createHero(String name, String classType){
+		InputStream in = getClass().getClassLoader().getResourceAsStream("characters/Heroes.txt");
+		try {
+			stream2file(in);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ArrayList<String> file = Utils
+				.loadFileAsString(in);
+
+				ArrayList<String> hero = new ArrayList<>();
+		for (int i = 0; i < file.size(); i++) {
+			hero.add(file.get(i));
+		}
+		hero.add("");
+		hero.add(name);
+		hero.add("Class "+classType);
+		hero.add("Level 1");
+		hero.add("XP 0");
+		hero.add("Attack 10");
+		hero.add("Defense 10");
+		hero.add("Hit Point 10");
+		hero.add("Weapons 10");
+		hero.add("Armor 10");
+		hero.add("Helm 10");
+
+	}
+	public static File stream2file(InputStream in) throws IOException {
+		File tempFile = File.createTempFile("stringOfYourChoice", ".tmp");
+		tempFile.deleteOnExit();
+		Files.copy(in, tempFile.toPath(), null);
+		return tempFile;
+	}
 }
