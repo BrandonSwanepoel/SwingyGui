@@ -7,6 +7,8 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JPanel;
 
 import bswanepo.display.Display;
+import bswanepo.display.MapPassed;
+import bswanepo.entities.Entity;
 import bswanepo.gfx.Assets;
 import bswanepo.gfx.GameCamera;
 import bswanepo.input.KeyManager;
@@ -14,6 +16,7 @@ import bswanepo.states.GameState;
 import bswanepo.states.State;
 import bswanepo.textBase.LobbyController;
 import bswanepo.textBase.LobbyModel;
+import bswanepo.worlds.World;
 
 public class Game extends JPanel implements Runnable {
 
@@ -67,6 +70,7 @@ public class Game extends JPanel implements Runnable {
 		
 		if(State.getState() != null)
 			State.getState().tick();
+			
 	}
 	
 	private void render(){

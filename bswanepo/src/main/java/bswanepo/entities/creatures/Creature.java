@@ -15,7 +15,6 @@ import bswanepo.Menu;
 import bswanepo.display.Display;
 import bswanepo.display.MapPassed;
 import bswanepo.entities.Entity;
-import bswanepo.input.KeyManager;
 import bswanepo.textBase.GamePlay;
 import bswanepo.textBase.LobbyController;
 import bswanepo.textBase.LobbyModel;
@@ -28,17 +27,18 @@ public abstract class Creature extends Entity {
 	public static final int DEFAULT_CREATURE_WIDTH = 64, DEFAULT_CREATURE_HEIGHT = 64;
 	public static ArrayList<String> landedOnVillain = new ArrayList<>();
 	public static GamePlay gamePlay = new GamePlay();
-	public static Boolean moved = true;
+	// public static Boolean moved = true;
 	public static Boolean enemy = false;
-	public static String levelUp = null;
+	// public static Boolean mapPassed = false;
+	// public static String levelUp = null;
 
 	protected int health;
 	protected float speed;
 	protected float xMove, yMove;
 	public static String[] gameOutCome = new String[2];
-	public MapPassed map;
+	// public MapPassed map;
 
-	public Creature(Handler handler, float x, float y, int width, int height) {
+	public Creature(final Handler handler, final float x, final float y, final int width, final int height) {
 		super(handler, x, y, width, height);
 		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;
@@ -47,30 +47,28 @@ public abstract class Creature extends Entity {
 	}
 
 	public void move() {
-		// Player.pressed = !Player.pressed;
-
 		if (enemy == false) {
 			x += xMove;
 			y += yMove;
 			
-			 if(x < -1 || x> (World.mapSize-1)*64 || y < -1 || y > (World.mapSize-1)*64){
-				
-				map = MapPassed.getInstance();
-				map.map();
-			 }
+				if(x< -1 || x> (World.mapSize-1)*64 || y < -1 || y> (World.mapSize-1)*64){
+
+				MapPassed map = new MapPassed(x, y);
+				return;
+				}
 
 			landedOnVillain(x, y);
 		}
 
 	}
 
-	public void landedOnVillain(float xAxis, float yAxis) {
+	public void landedOnVillain(final float xAxis, final float yAxis) {
 
 		if (LobbyController.villainRowValues.size() != 0) {
 			for (int i = 0; i < LobbyController.villainRowValues.size(); i++) {
 
-				int villainRowInteger = Integer.parseInt(LobbyController.villainRowValues.get(i));
-				int villainColumnInteger = Integer.parseInt(LobbyController.villainColValues.get(i));
+				final int villainRowInteger = Integer.parseInt(LobbyController.villainRowValues.get(i));
+				final int villainColumnInteger = Integer.parseInt(LobbyController.villainColValues.get(i));
 				if (villainRowInteger == yAxis && villainColumnInteger == xAxis && villainColumnInteger != World.CharCol
 						&& villainRowInteger != World.CharRow) {
 					enemy = true;
@@ -78,7 +76,7 @@ public abstract class Creature extends Entity {
 					landedOnVillain = LobbyModel.getVillain(villainRowInteger, villainColumnInteger);
 					// String action;
 
-					Object[] options = { "Fight", "Run" };
+					final Object[] options = { "Fight", "Run" };
 					JOptionPane jop = new JOptionPane("You have landed on a Villain what would you like to do?",
 							JOptionPane.PLAIN_MESSAGE, JOptionPane.YES_NO_OPTION, null, options, options[0]);
 					JDialog dialog = jop.createDialog(null, "Warning");
@@ -114,7 +112,7 @@ public abstract class Creature extends Entity {
 							enemy = false;
 
 						}
-						int index = LobbyController.villainRowValues.indexOf(String.valueOf(villainRowInteger));
+						final int index = LobbyController.villainRowValues.indexOf(String.valueOf(villainRowInteger));
 						LobbyController.villainRowValues.remove(index);
 						LobbyController.villainColValues.remove(index);
 						dialog.dispose();
@@ -122,7 +120,7 @@ public abstract class Creature extends Entity {
 					} else if (a3.equals("Run")) {
 						System.out.println("RUNNNN");
 
-						boolean runResult = gamePlay.run();
+						final boolean runResult = gamePlay.run();
 
 						if (runResult == true) {
 							JOptionPane.showMessageDialog(Menu.display.getFrame(),
@@ -131,7 +129,7 @@ public abstract class Creature extends Entity {
 							enemy = false;
 						} else if (runResult == false) {
 
-							Object[] option = { "okay" };
+							final Object[] option = { "okay" };
 
 							jop = new JOptionPane("Unlucky you must fight", JOptionPane.PLAIN_MESSAGE,
 									JOptionPane.YES_NO_OPTION, null, option, option[0]);
@@ -174,7 +172,7 @@ public abstract class Creature extends Entity {
 
 						i = LobbyController.villainRowValues.size();
 
-						int index = LobbyController.villainRowValues.indexOf(String.valueOf(villainRowInteger));
+						final int index = LobbyController.villainRowValues.indexOf(String.valueOf(villainRowInteger));
 						LobbyController.villainRowValues.remove(index);
 						LobbyController.villainColValues.remove(index);
 						dialog.dispose();
@@ -244,7 +242,7 @@ public abstract class Creature extends Entity {
 		return xMove;
 	}
 
-	public void setxMove(float xMove) {
+	public void setxMove(final float xMove) {
 		this.xMove = xMove;
 	}
 
@@ -252,7 +250,7 @@ public abstract class Creature extends Entity {
 		return yMove;
 	}
 
-	public void setyMove(float yMove) {
+	public void setyMove(final float yMove) {
 		this.yMove = yMove;
 	}
 
@@ -260,7 +258,7 @@ public abstract class Creature extends Entity {
 		return health;
 	}
 
-	public void setHealth(int health) {
+	public void setHealth(final int health) {
 		this.health = health;
 	}
 
@@ -268,7 +266,7 @@ public abstract class Creature extends Entity {
 		return speed;
 	}
 
-	public void setSpeed(float speed) {
+	public void setSpeed(final float speed) {
 		this.speed = speed;
 	}
 

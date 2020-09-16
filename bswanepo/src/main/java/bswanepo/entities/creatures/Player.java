@@ -96,7 +96,6 @@ public class Player extends Creature {
 
 			yMove = -speed;
 			handler.getKeyManager().pressed = true;
-			MapPassed.mapPassed = false;
 			}
 			// return;
 
@@ -107,7 +106,6 @@ public class Player extends Creature {
 			yMove = speed;
 
 			handler.getKeyManager().pressed = true;
-			MapPassed.mapPassed = false;
 
 			}
 			// return;
@@ -120,7 +118,6 @@ public class Player extends Creature {
 				
 			xMove = -speed;
 			handler.getKeyManager().pressed = true;
-			MapPassed.mapPassed = false;
 
 			}
 			// return;
@@ -132,7 +129,6 @@ public class Player extends Creature {
 			xMove = speed;
 			
 			handler.getKeyManager().pressed = true;
-			MapPassed.mapPassed = false;
 
 			}
 			// return;

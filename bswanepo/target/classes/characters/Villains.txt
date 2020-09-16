@@ -1,7 +1,7 @@
 Name Death1
 Level 1
-Row 64
-Col 512
+Row 512
+Col 320
 XP 100
 Attack 20
 Defense 10
@@ -10,8 +10,8 @@ Artefact Armor 1
 
 Name Evil1
 Level 1
-Row 192
-Col 384
+Row 128
+Col 448
 XP 100
 Attack 20
 Defense 5
@@ -20,7 +20,7 @@ Artefact Helm 1
 
 Name IKillYou1
 Level 1
-Row 128
+Row 448
 Col 128
 XP 100
 Attack 20
@@ -30,8 +30,8 @@ Artefact Weapons 1
 
 Name KillOrBeKilled1
 Level 1
-Row 320
-Col 192
+Row 192
+Col 384
 XP 100
 Attack 20
 Defense 20
@@ -39,8 +39,8 @@ Hit Points 30
 
 Name Death2
 Level 2
-Row 256
-Col 320
+Row 320
+Col 704
 XP 200
 Attack 40
 Defense 10
@@ -49,8 +49,8 @@ Artefact Armor 2
 
 Name Evil2
 Level 2
-Row 896
-Col 704
+Row 64
+Col 256
 XP 200
 Attack 40
 Defense 15
@@ -59,8 +59,8 @@ Artefact Armor 2
 
 Name IKillYou2
 Level 2
-Row 832
-Col 832
+Row 512
+Col 896
 XP 200
 Attack 40
 Defense 35
@@ -68,8 +68,8 @@ Hit Points 35
 
 Name KillOrBeKilled2
 Level 2
-Row 768
-Col 576
+Row 384
+Col 128
 XP 200
 Attack 40
 Defense 30

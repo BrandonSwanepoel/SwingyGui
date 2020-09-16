@@ -14,15 +14,19 @@ public class MapPassed {
     public static GamePlay gamePlay = new GamePlay();
     public static String levelUp = null;
 
-    public static String[] gameOutCome = new String[2];
-    private static MapPassed single_instance;
-    public static Boolean mapPassed;
+    // public static String[] gameOutCome = new String[2];
+    // private static MapPassed single_instance;
+    // public static Boolean mapPassed = false;
+    public static int i = 0;
 
-    public MapPassed() {
+    public MapPassed(float x, float y) {
+				
+        if(i == 0)
             map();
     }
 
     public void map() {
+        i++;
         String xp = gamePlay.nextLevel(LobbyModel.hero);
 
         Object[] beatTheMapOption = { "AWESOME" };
@@ -59,13 +63,6 @@ public class MapPassed {
             }
             // view.userLevelUp(levelUp);
         }
-
     }
 
-    public static MapPassed getInstance() {
-        if (single_instance == null)
-            single_instance = new MapPassed();
-
-        return single_instance;
-    }
 }
