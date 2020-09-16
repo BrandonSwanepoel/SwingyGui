@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+import bswanepo.entities.Entity;
+import bswanepo.entities.creatures.Creature;
+
 public class LobbyModel extends LobbyController {
 
     // VillainPlacement villainPlacement = new VillainPlacement();
@@ -31,6 +34,10 @@ public class LobbyModel extends LobbyController {
                     if (data.equals(heroName)) {
                         while (!data.equals("") && fileReader.hasNextLine()) {
                             hero.add(data);
+                            if(data.contains("Level")){
+                                final String[] tmp = data.split(" ");
+                                heroLvl = tmp[1];
+                            }
                             data = fileReader.nextLine();
                         }
                         fileReader.close();
@@ -78,6 +85,7 @@ public class LobbyModel extends LobbyController {
         }
         return hero;
     }
+
     public static ArrayList<String[]> getAllHeroes() {
         try {
             final ArrayList<String[]> heroes = new ArrayList<>();
@@ -155,16 +163,17 @@ public class LobbyModel extends LobbyController {
         }
         return null;
     }
-    public static void setVillainsPosition() {
+
+    public static void setVillainsPosition(String gameType) {
 
         PrintWriter writer;
         int i = 0;
 
         ArrayList<String> villainRowPlace = new ArrayList<>();
         ArrayList<String> villainColumnPlace = new ArrayList<>();
-        villainRowPlace = uniqueVillainRowPlacement();
+        villainRowPlace = uniqueVillainRowPlacement(gameType);
 
-        villainColumnPlace = uniqueVillainRowPlacement();
+        villainColumnPlace = uniqueVillainRowPlacement(gameType);
         villainRowValues.clear();
         villainColValues.clear();
         try {
@@ -179,6 +188,7 @@ public class LobbyModel extends LobbyController {
                         final String data = fileReader.nextLine();
                         writer.println(data);
                         if (data.equals(hero.get(2))) {
+
                             writer.println("Row " + villainRowPlace.get(i));
                             writer.println("Col " + villainColumnPlace.get(i));
                             villainRowValues.add(villainRowPlace.get(i));
@@ -209,26 +219,31 @@ public class LobbyModel extends LobbyController {
         }
     }
 
-    public static ArrayList<String> uniqueVillainRowPlacement() {
-        final ArrayList<String> villainRowPlace = fillVillainPlaces();
+    public static ArrayList<String> uniqueVillainRowPlacement(String gameType) {
+        final ArrayList<String> villainRowPlace = fillVillainPlaces(gameType);
         Collections.shuffle(villainRowPlace);
         return villainRowPlace;
     }
 
-    public static ArrayList<String> uniqueVillainColumnPlacement() {
-        final ArrayList<String> villainColumnPlace = fillVillainPlaces();
+    public static ArrayList<String> uniqueVillainColumnPlacement(String gameType) {
+        final ArrayList<String> villainColumnPlace = fillVillainPlaces(gameType);
         Collections.shuffle(villainColumnPlace);
         return villainColumnPlace;
     }
 
-    public static ArrayList<String> fillVillainPlaces() {
+    public static ArrayList<String> fillVillainPlaces(String gameType) {
         final String[] level = LobbyController.hero.get(2).split(" ");
         final int mapSize = (Integer.parseInt(level[1]) - 1) * 5 + 10 - (Integer.parseInt(level[1]) % 2);
         final ArrayList<String> items = new ArrayList<>();
 
         for (int i = 0; i < mapSize; i++) {
-            if (i != mapSize / 2 && i != 0 && i != mapSize) {
+
+            if (i * 64 < mapSize * 64 && i != mapSize / 2 && i != 0 && i != mapSize) {
+                if(gameType == "Gui") {
+                items.add(String.valueOf(i * Creature.DEFAULT_CREATURE_WIDTH));
+                }else if(gameType == "Console"){
                 items.add(String.valueOf(i));
+                }
             }
         }
         return items;

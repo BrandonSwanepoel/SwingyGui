@@ -4,14 +4,18 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import javax.swing.JPanel;
+
 import bswanepo.display.Display;
 import bswanepo.gfx.Assets;
 import bswanepo.gfx.GameCamera;
 import bswanepo.input.KeyManager;
 import bswanepo.states.GameState;
 import bswanepo.states.State;
+import bswanepo.textBase.LobbyController;
+import bswanepo.textBase.LobbyModel;
 
-public class Game implements Runnable{
+public class Game extends JPanel implements Runnable {
 
 	private Display display;
 	private int width, height;
@@ -42,19 +46,12 @@ public class Game implements Runnable{
 		this.height = height;
 		this.title = title;
 		keyManager = Menu.display.getKeyManager();
-		// keyManager = new KeyManager();
-		
-		
 	}
 	private void init() {
 
-		// Display.cl.show(Display.panelCont,"Game");
-		// display = new Display(width, height);
 		display = Menu.display;
-		//Display.panelCont.addKeyListener(keyManager);
-		// display.getFrame().addKeyListener(keyManager);
+		LobbyModel.setVillainsPosition(LobbyController.gameType);
 		display.getCardLayout().show(Display.panelCont, "Game");
-		// display.getFrame().addKeyListener(keyManager);
 		Assets.init();
 		handler = new Handler(this);
 		

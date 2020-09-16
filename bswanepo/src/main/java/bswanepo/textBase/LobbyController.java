@@ -25,6 +25,7 @@ public class LobbyController {
     public LobbyModel lobby;
     boolean heroCreated = false;
     public static String heroName = null;
+    public static String gameType = "Gui";
     String heroClass = null;
     boolean selectHero = false;
     boolean createdHero = false;
@@ -136,8 +137,7 @@ public class LobbyController {
 
     public boolean selectHero(boolean selectHero) {
         TheView view = new TheView();
-        lobby = new LobbyModel();
-        heroes = lobby.getAllHeroes();
+        heroes = LobbyModel.getAllHeroes();
         view.paintHeroList(heroes);
 
         try {
@@ -145,7 +145,7 @@ public class LobbyController {
             do {
                 view.pickHeroByName();
                 heroName = c.readLine();
-                hero = lobby.selectHero(heroName);
+                hero = LobbyModel.selectHero(heroName);
                 if (hero.isEmpty()) {
                     view.pickValidOption("Valid hero");
                     // continue;
@@ -166,7 +166,6 @@ public class LobbyController {
 
     public void startOrEndGame() {
         TheView view = new TheView();
-        lobby = new LobbyModel();
         String result = null;
         boolean validInput = false;
         boolean exit = false;
@@ -176,7 +175,7 @@ public class LobbyController {
             result = c.readLine();
             if (result.matches("Yes|yes|y|Y")) {
                 Functions.clearScreen();
-                lobby.setVillainsPosition();
+                LobbyModel.setVillainsPosition(gameType);
                 validInput = true;
                 new GameController();
             } else if (result.matches("No|no|n|N")) {
@@ -213,7 +212,6 @@ public class LobbyController {
 
     public void nextMission() {
         TheView view = new TheView();
-        lobby = new LobbyModel();
         String result = null;
         boolean validInput = false;
         boolean exit = false;
@@ -222,7 +220,7 @@ public class LobbyController {
             result = c.readLine();
             if (result.matches("Yes|yes|y|Y")) {
                 Functions.clearScreen();
-                lobby.setVillainsPosition();
+                LobbyModel.setVillainsPosition(gameType);
                 validInput = true;
                 new GameController();
             } else if (result.matches("No|no|n|N")) {

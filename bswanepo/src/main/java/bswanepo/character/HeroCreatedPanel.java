@@ -16,6 +16,11 @@ import bswanepo.display.Display;
 
 public class HeroCreatedPanel extends JPanel {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+
     private Font titleFont = Game.main.deriveFont(45f);
 
     private JLabel title = new JLabel("Your Hero has been created!\n");
@@ -26,8 +31,8 @@ public class HeroCreatedPanel extends JPanel {
         JButton startGameButton = new JButton();
         JButton backButton = new JButton();
       
-        title.setFont(titleFont);
-        this.add(title);
+        // title.setFont(titleFont);
+        // this.add(title);
         startGameButton.setText("Start Game");
         backButton.setText("Back");
 

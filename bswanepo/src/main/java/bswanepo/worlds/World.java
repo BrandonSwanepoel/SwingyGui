@@ -4,6 +4,9 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import bswanepo.Handler;
+import bswanepo.character.SelectCharacterPanel;
+import bswanepo.textBase.LobbyController;
+import bswanepo.textBase.LobbyModel;
 import bswanepo.tiles.Tile;
 import bswanepo.utils.Utils;
 
@@ -13,14 +16,16 @@ public class World {
 	private int width, height;
 	private int spawnX, spawnY;
 	private int[][] tiles;
-	public static int level = 2;
+	public static int level =Integer.parseInt(LobbyController.heroLvl);
 	public static final int mapSize = (level - 1) * 5 + 10 - (level % 2);
-	public static int CharRow = mapSize / 2;
-	public static int CharCol = mapSize / 2;
+	public static int CharRow;
+	public static int CharCol;
 
 	public World(Handler handler) {
 		this.handler = handler;
 		loadWorld();
+		CharCol = (mapSize / 2)*64;
+		CharRow = (mapSize / 2)*64;
 	}
 
 	public void tick() {
@@ -65,24 +70,28 @@ public class World {
 				 if (y == 0) {
 						tiles[x][y] = 3;
 					
-				} else if(x == 0 ){
+				} else if(x == 0){
 					tiles[x][y] = 4;
 				}
-					else if (x + 1 == width) {
+					else if (x+1 == width) {
 						tiles[x][y] = 5;
-				} else if (y + 1 == height) {
+				} else if (y+1  == height) {
 						tiles[x][y] = 6;
 				} else {
 					//Get random number
 					random = rn.nextInt(10 - 1 + 1) + 1;
 					if(x == random){
+					//mad on grass
 						int count = 0;
 
 						while(count !=3){
 							tiles[x][y] = 1;
-							x++;
+							// if(x != 9){
+							// x++;
 							count++;
-						}
+
+							}
+						// }
 
 					}else{
 						tiles[x][y] = 0;

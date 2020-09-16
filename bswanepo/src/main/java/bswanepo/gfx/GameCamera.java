@@ -1,6 +1,5 @@
 package bswanepo.gfx;
 
-import bswanepo.Game;
 import bswanepo.Handler;
 import bswanepo.entities.Entity;
 import bswanepo.tiles.Tile;
@@ -23,6 +22,7 @@ public class GameCamera {
 		}
 		if(yOffset < 0){
 			yOffset = 0;
+			
 		}else if(yOffset > handler.getWorld().getHeight() * Tile.TILEHEIGHT - handler.getHeight()){
 			yOffset = handler.getWorld().getHeight() * Tile.TILEHEIGHT-handler.getHeight();
 		}

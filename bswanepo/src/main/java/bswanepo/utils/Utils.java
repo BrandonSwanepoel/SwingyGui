@@ -12,14 +12,12 @@ import bswanepo.states.State;
 public class Utils {
 	private State gameState;
 	public static ArrayList<String> loadFileAsString(InputStream in){
-		StringBuilder builder = new StringBuilder();
 		ArrayList<String> file = new ArrayList<>();
 		
 		try{
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			String line;
 			while((line = br.readLine()) != null){
-				// builder.append(line + "\n");
 				file.add(line);
 
 			}

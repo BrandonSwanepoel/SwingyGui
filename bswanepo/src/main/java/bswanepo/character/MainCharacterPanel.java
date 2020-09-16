@@ -12,24 +12,17 @@ import javax.swing.JPanel;
 import java.awt.Font;
 
 import bswanepo.Game;
-import bswanepo.Handler;
-import bswanepo.Menu;
 import bswanepo.display.Display;
-import bswanepo.mainMenu.GuiButton;
-import bswanepo.mainMenu.GuiPanel;
-import bswanepo.mainMenu.GuiScreen;
-import bswanepo.mainMenu.MainMenuPanel;
-import bswanepo.states.State;
 
 public class MainCharacterPanel extends JPanel {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private Font titleFont = Game.main.deriveFont(45f);
     private String title = "Character";
-    private int buttonWidth = 220;
-    private int spacing = 70;
-    private int buttonHeight = 60;
-    private Handler handler;
-    private GuiScreen screen;
+   
 
     public MainCharacterPanel(int canvasWidth, int canvasHeight) {
         super();

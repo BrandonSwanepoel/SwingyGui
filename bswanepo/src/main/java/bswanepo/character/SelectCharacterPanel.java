@@ -1,7 +1,6 @@
 package bswanepo.character;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
 
 import java.awt.Dimension;
 
@@ -21,15 +20,21 @@ import java.util.ArrayList;
 import static javax.swing.JOptionPane.*;
 
 import bswanepo.gfx.Assets;
+import bswanepo.textBase.LobbyModel;
 
 public class SelectCharacterPanel extends JPanel {
+
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
     private Font titleFont = Game.main.deriveFont(40f);
     
     private Handler handler;
     private JList j1;
     
-
+public static Game game;
     private String clickedHeroName;
     JPanel jsp1 = new JPanel();
     JPanel jsp2 = new JPanel();
@@ -114,7 +119,9 @@ public class SelectCharacterPanel extends JPanel {
                 Display.cl.show(Display.panelCont, "selectCharacterPanel");
                
                 if (clickedHeroName != null) {
-                    Game game = new Game("Swingy", canvasWidth, canvasHeight);
+                    LobbyModel.selectHero(clickedHeroName);
+                    
+                   game = new Game("Round 1", canvasWidth, canvasHeight);
                     handler = new Handler(game);
                     game.start();
                 }else{
@@ -135,7 +142,9 @@ public class SelectCharacterPanel extends JPanel {
         this.add(backButton);
 
     }
-
+    public Game getGame(){
+        return this.game;
+    }
     private class ValueReporter implements ListSelectionListener {
         public void valueChanged(ListSelectionEvent event) {
             Assets assets = new Assets();

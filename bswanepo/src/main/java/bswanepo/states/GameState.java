@@ -16,7 +16,7 @@ public class GameState extends State {
 		super(handler);
 		world = new World(handler);
 		handler.setWorld(world);
-		player = new Player(handler, 100, 100);
+		player = new Player(handler, World.CharCol, World.CharRow);
 	}
 	
 	@Override

@@ -14,7 +14,12 @@ import bswanepo.textBase.LobbyModel;
 import static javax.swing.JOptionPane.*;
 
 public class CreateCharacterPanel extends JPanel {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private String classField = null;
+    public JComboBox petList;
 
     public CreateCharacterPanel(int canvasWidth, int canvasHeight) {
         this.setPreferredSize(new Dimension(canvasWidth, canvasHeight));
@@ -40,7 +45,7 @@ public class CreateCharacterPanel extends JPanel {
         panel.add(new JLabel("Hero Class:", JLabel.RIGHT));
         String[] classStrings = { "Wizard", "Warrior", "Lazy", "Hunter", "Class type" };
 
-        JComboBox petList = new JComboBox(classStrings);
+        petList= new JComboBox(classStrings);
         panel.add(petList);
         petList.setSelectedIndex(4);
 

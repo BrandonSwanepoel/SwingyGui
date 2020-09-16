@@ -1,34 +1,20 @@
 package bswanepo.mainMenu;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics2D;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.util.HashMap;
-import java.awt.CardLayout;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.GroupLayout.Alignment;
 
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.Rectangle;
-import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.CardLayout;
 
 import java.awt.Font;
 import java.awt.*;
-import javax.swing.*;
-import java.awt.Canvas;
 import bswanepo.Game;
 import bswanepo.Handler;
 // import bswanepo.character.MainCharacterPanel;
@@ -36,21 +22,18 @@ import bswanepo.display.Display;
 
 public class MainMenuPanel extends JPanel{
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private Font titleFont = Game.main.deriveFont(70f);
     private Font creatorFont = Game.main.deriveFont(10f);
     private String title = "Swingy\n";
     private String creator = "By Brandon Swanepoel";
-    private int buttonWidth = 220;
-    private int spacing = 90;
-    private int buttonHeight = 60;
-    private GuiScreen screen;
-    private GuiPanel panel;
-    private Canvas panelMenu;
     public Display display;
 
     public JPanel panelCont;
     private Graphics2D g;
-    public static HashMap<String, GuiPanel> panels;
     private JLabel label;
     public static JButton playButton;
     public static JButton quitButton;
@@ -63,13 +46,12 @@ public class MainMenuPanel extends JPanel{
         this.setLayout(new GridBagLayout());
         this.add(logo);
 
-        this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+         this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         // super.addMouseListener(this);
         this.setPreferredSize(new Dimension(canvasWidth, canvasHeight));
         this.setMaximumSize(new Dimension(canvasWidth, canvasHeight));
         this.setMinimumSize(new Dimension(canvasWidth, canvasHeight));
-        this.setBackground(Color.gray);
         this.setFocusable(false);
         // playButton = new GuiButton(550 / 2 - buttonWidth / 2, buttonWidth, buttonWidth, buttonHeight);
         // quitButton = new GuiButton(550 / 2 - buttonWidth / 2, playButton.getY() + spacing, buttonWidth, buttonHeight);
@@ -83,22 +65,8 @@ public class MainMenuPanel extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-               
-
-                // screen = GuiScreen.getInstance();
-                // if(!panels.containsValue("Game")){
-                // CharacterFrame mainCharacterPanel = new CharacterFrame(canvasWidth,
-                // canvasHeight);
-                // mainCharacterPanel.start();
-                // screen.add("Character",panel);
-                // screen.add("Character", new MainCharacterPanel(canvasWidth,canvasHeight));
-                // screen.setCurrentPanle("Character");
-                // screen.update();
+           
                 Display.cl.show(Display.panelCont,"menuCharacterPanel");
-                // Game game = new Game("Swingy", canvasWidth, canvasHeight);
-                // handler = new Handler(game);
-                // game.start();
-
             }
 
         });
@@ -111,13 +79,6 @@ public class MainMenuPanel extends JPanel{
         });
         this.add(playButton);
         this.add(quitButton);
-        this.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
-        // label = new JLabel();
-        // label.setFont(titleFont);
-        // label.setBackground(Color.WHITE);
-        // label.paint(g);
-        // this.add(label);
-        // ((MainMenuPanel) panelMenu).render(g);
     }
 
     // @Override

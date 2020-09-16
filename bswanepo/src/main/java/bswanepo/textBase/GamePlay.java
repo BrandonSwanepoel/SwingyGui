@@ -46,7 +46,7 @@ public class GamePlay extends LobbyModel implements Actionable {
         }
         // get hero Stats
 
-        for (int i = 3; i < hero.size(); i++) {
+        for (int i = 3; i < 7; i++) {
             final String[] tmp = hero.get(i).split(" ");
             if (tmp[1].equals("Points")) {
                 heroStats.add(Integer.parseInt(tmp[2]));
@@ -64,7 +64,7 @@ public class GamePlay extends LobbyModel implements Actionable {
         }
         // check who will win the fight
         for (int i = 0; i < 4; i++) {
-            if (heroStats.get(i) > villainStats.get(i)) {
+            if (heroStats.get(i) >= villainStats.get(i)) {
                 win++;
             } else if (heroStats.get(i) < villainStats.get(i)) {
                 lose++;

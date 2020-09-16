@@ -1,24 +1,13 @@
 package bswanepo;
 
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.image.BufferStrategy;
-import java.awt.CardLayout;
 import bswanepo.display.Display;
-import bswanepo.gfx.Assets;
-import bswanepo.gfx.GameCamera;
 import bswanepo.input.KeyManager;
-import bswanepo.states.GameState;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import javax.swing.*;
 import java.awt.event.*;
 // import bswanepo.states.MenuState;
-import bswanepo.mainMenu.*;
 import bswanepo.states.State;
-import bswanepo.utils.Utils;
 
 public class Menu implements Runnable,MouseListener,MouseMotionListener {
 
@@ -27,13 +16,6 @@ public class Menu implements Runnable,MouseListener,MouseMotionListener {
 	
 	private boolean running = false;
 	private Thread thread;
-	
-	private BufferStrategy bs;
-	private Graphics g;
-	
-	//MainMenu
-	private Screen screen;
-	private CardLayout cl;
 	
 	//Input
 	private KeyManager keyManager;
@@ -54,15 +36,10 @@ public class Menu implements Runnable,MouseListener,MouseMotionListener {
 	private void init() {
 
 		display = new Display(width, height);
-		// display.getFrame().addKeyListener(keyManager);
 		display.getCardLayout().show(Display.panelCont, "1");
 		display.getCanvas().addMouseListener(this);
 		
         display.getCanvas().addMouseMotionListener(this);
-		// screen = Screen.getInstance();
-		// screen.add("Menu", new MainMenuPanel(width,height));
-        // screen.setCurrentPanle("Menu");
-		// screen.update();
 	}
 	
 	private void tick(){
@@ -74,44 +51,6 @@ public class Menu implements Runnable,MouseListener,MouseMotionListener {
 	
 	private void render(){
 
-		// bs = display.getCanvas().getBufferStrategy();
-		// if(bs == null){
-		// 	display.getCanvas().createBufferStrategy(3);
-		// 	return;
-		// }
-		//  g = bs.getDrawGraphics();
-		// // //Clear Screen
-		// // g.clearRect(0, 0, width, height);
-		// //Draw Here!
-		// Graphics2D g2d = (Graphics2D) g;
-		// g.setColor(Color.black);
-		
-		// screen.ScreenType();
-		
-		// bs.show();
-		// bs.dispose();
-
-		
-		// if(State.getState() != null)
-		// 	State.getState().render(g);
-		
-		// bs = display.getCanvas().getBufferStrategy();
-		// if(bs == null){
-		// 	display.getCanvas().createBufferStrategy(3);
-		// 	return;
-		// }
-		// g = bs.getDrawGraphics();
-		// //Clear Screen
-		// g.clearRect(0, 0, width, height);
-
-		// //Draw Here!
-		
-		
-		// //End Drawing!
-		// bs.show();
-		// g.dispose();
-		//End Drawing!
-		
 	}
 	
 	public void run(){
