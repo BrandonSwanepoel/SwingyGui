@@ -7,8 +7,6 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JPanel;
 
 import bswanepo.display.Display;
-import bswanepo.display.MapPassed;
-import bswanepo.entities.Entity;
 import bswanepo.gfx.Assets;
 import bswanepo.gfx.GameCamera;
 import bswanepo.input.KeyManager;
@@ -16,7 +14,6 @@ import bswanepo.states.GameState;
 import bswanepo.states.State;
 import bswanepo.textBase.LobbyController;
 import bswanepo.textBase.LobbyModel;
-import bswanepo.worlds.World;
 
 public class Game extends JPanel implements Runnable {
 
@@ -31,13 +28,15 @@ public class Game extends JPanel implements Runnable {
 	private Graphics g;
 	
 	//States
-	public State gameState;
+	public static State gameState;
 
 	//Input
 	private KeyManager keyManager;
 	
 	//Camera
 	private GameCamera gameCamera;
+
+	public static Game game;
 	
 	//Fonts
 	public static final Font main = new Font("Bebas Neue Regular",Font.PLAIN,28);
@@ -49,6 +48,7 @@ public class Game extends JPanel implements Runnable {
 		this.height = height;
 		this.title = title;
 		keyManager = Menu.display.getKeyManager();
+		game = this;
 	}
 	private void init() {
 
@@ -63,6 +63,7 @@ public class Game extends JPanel implements Runnable {
 		
 		gameState = new GameState(handler);
 		State.setState(gameState);
+		
 	}
 	
 	private void tick(){
@@ -145,6 +146,7 @@ public class Game extends JPanel implements Runnable {
 		return gameState;
 	}
 	public synchronized void start(){
+		this.stop();
 		if(running)
 			return;
 		running = true;

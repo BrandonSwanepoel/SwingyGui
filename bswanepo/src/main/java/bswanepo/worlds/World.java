@@ -4,11 +4,8 @@ import java.awt.Graphics;
 import java.util.Random;
 
 import bswanepo.Handler;
-import bswanepo.character.SelectCharacterPanel;
 import bswanepo.textBase.LobbyController;
-import bswanepo.textBase.LobbyModel;
 import bswanepo.tiles.Tile;
-import bswanepo.utils.Utils;
 
 public class World {
 

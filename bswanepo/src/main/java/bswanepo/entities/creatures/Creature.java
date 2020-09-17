@@ -1,14 +1,10 @@
 package bswanepo.entities.creatures;
 
-import java.sql.Blob;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
-import javax.swing.text.StyledEditorKit.BoldAction;
 
 import bswanepo.*;
 import bswanepo.Menu;
@@ -27,16 +23,12 @@ public abstract class Creature extends Entity {
 	public static final int DEFAULT_CREATURE_WIDTH = 64, DEFAULT_CREATURE_HEIGHT = 64;
 	public static ArrayList<String> landedOnVillain = new ArrayList<>();
 	public static GamePlay gamePlay = new GamePlay();
-	// public static Boolean moved = true;
 	public static Boolean enemy = false;
-	// public static Boolean mapPassed = false;
-	// public static String levelUp = null;
 
 	protected int health;
 	protected float speed;
 	protected float xMove, yMove;
 	public static String[] gameOutCome = new String[2];
-	// public MapPassed map;
 
 	public Creature(final Handler handler, final float x, final float y, final int width, final int height) {
 		super(handler, x, y, width, height);
@@ -54,6 +46,8 @@ public abstract class Creature extends Entity {
 				if(x< -1 || x> (World.mapSize-1)*64 || y < -1 || y> (World.mapSize-1)*64){
 
 				MapPassed map = new MapPassed(x, y);
+				x = xMove;
+				y = yMove;
 				return;
 				}
 

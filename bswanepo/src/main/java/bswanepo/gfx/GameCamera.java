@@ -10,6 +10,7 @@ public class GameCamera {
 	private float xOffset, yOffset;
 	
 	public GameCamera(Handler handler, float xOffset, float yOffset){
+		
 		this.handler = handler;
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;

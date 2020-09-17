@@ -1,7 +1,7 @@
 CrazyGuyJoe
 Class Tank
-Level 2
-XP 2100
+Level 1
+XP 900
 Attack 25
 Defense 10
 Hit Points 45
@@ -12,7 +12,7 @@ Helm 10
 WondaTheMagnificint
 Class Wizard
 Level 1
-XP 2000
+XP 0
 Attack 20
 Defense 20
 Hit Points 30
@@ -22,8 +22,8 @@ Helm 10
 
 Arcane
 Class MonkeyKing
-Level 2
-XP 1300
+Level 1
+XP 100
 Attack 30
 Defense 15
 Hit Points 35
@@ -33,8 +33,8 @@ Helm 15
 
 UncleBob
 Class Lazy
-Level 2
-XP 1200
+Level 1
+XP 0
 Attack 20
 Defense 40
 Hit Points 50
@@ -45,7 +45,7 @@ Helm 1
 CrazyWomanJoelien
 Class Tank
 Level 1
-XP 0
+XP 200
 Attack 10
 Defense 10
 Hit Point 10

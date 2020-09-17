@@ -1,11 +1,13 @@
 package bswanepo.display;
 
-import java.util.ArrayList;
-
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
+import bswanepo.Game;
+import bswanepo.Handler;
+import bswanepo.Menu;
+import bswanepo.character.SelectCharacterPanel;
 import bswanepo.textBase.GamePlay;
 import bswanepo.textBase.LobbyModel;
 
@@ -13,15 +15,14 @@ public class MapPassed {
 
     public static GamePlay gamePlay = new GamePlay();
     public static String levelUp = null;
+    public static Game game;
+    private Handler handler;
 
-    // public static String[] gameOutCome = new String[2];
-    // private static MapPassed single_instance;
-    // public static Boolean mapPassed = false;
     public static int i = 0;
 
     public MapPassed(float x, float y) {
-				
-        if(i == 0)
+
+        if (i == 0)
             map();
     }
 
@@ -63,6 +64,28 @@ public class MapPassed {
             }
             // view.userLevelUp(levelUp);
         }
-    }
 
+        Object[] nextGameOption = { "Next Game", "Leave Game" };
+
+        JOptionPane nextGame = new JOptionPane("Are you ready for the next game?", JOptionPane.PLAIN_MESSAGE,
+                JOptionPane.YES_NO_OPTION, null, nextGameOption, nextGameOption[0]);
+        JDialog nextGameDialog = nextGame.createDialog(null, "Next Game?");
+        nextGameDialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+
+        nextGameDialog.setVisible(true);
+        String nextGameDialogAnswer = (String) nextGame.getValue();
+        if (nextGameDialogAnswer.equals("Next Game")) {
+            i = 0;
+            game = new Game("Round 1", Menu.display.getCanvas().getWidth(), Menu.display.getCanvas().getHeight());
+            handler = new Handler(game);
+            game.start();
+
+        } else if (nextGameDialogAnswer.equals("Leave Game")) {
+            Menu.display.getCanvas().setVisible(false);
+            Display.cl.show(Display.panelCont, "menuCharacterPanel");
+            nextGameDialog.dispose();
+            
+        }
+    }
+   
 }

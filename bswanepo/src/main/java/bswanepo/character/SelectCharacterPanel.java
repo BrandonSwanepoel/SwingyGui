@@ -16,6 +16,8 @@ import javax.swing.border.*;
 import bswanepo.Game;
 import bswanepo.Handler;
 import bswanepo.display.Display;
+import bswanepo.display.MapPassed;
+
 import java.util.ArrayList;
 import static javax.swing.JOptionPane.*;
 
@@ -120,9 +122,10 @@ public static Game game;
                
                 if (clickedHeroName != null) {
                     LobbyModel.selectHero(clickedHeroName);
-                    
+                    MapPassed.i = 0;
                    game = new Game("Round 1", canvasWidth, canvasHeight);
                     handler = new Handler(game);
+                    handler.setGame(game);
                     game.start();
                 }else{
                     showMessageDialog(null, "Please select a Hero", "Warning", 1);
@@ -142,8 +145,8 @@ public static Game game;
         this.add(backButton);
 
     }
-    public Game getGame(){
-        return this.game;
+    public Game setGame(){
+        return game;
     }
     private class ValueReporter implements ListSelectionListener {
         public void valueChanged(ListSelectionEvent event) {
