@@ -9,6 +9,7 @@ public abstract class Entity {
 	protected Handler handler;
 	protected float x, y;
 	protected int width, height;
+	protected float previousX,previousY;
 	
 	public Entity(Handler handler, float x, float y, int width, int height){
 		this.handler = handler;
@@ -16,6 +17,7 @@ public abstract class Entity {
 		this.y = y;
 		this.width = width;
 		this.height = height;
+
 	}
 	
 	public abstract void tick();

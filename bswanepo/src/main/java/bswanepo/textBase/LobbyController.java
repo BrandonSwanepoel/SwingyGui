@@ -3,6 +3,8 @@ package bswanepo.textBase;
 import java.io.Console;
 import java.util.ArrayList;
 
+import bswanepo.Launcher;
+
 public class LobbyController {
 
     public static ArrayList<String> hero = new ArrayList<>();
@@ -25,7 +27,7 @@ public class LobbyController {
     public LobbyModel lobby;
     boolean heroCreated = false;
     public static String heroName = null;
-    public static String gameType = "Gui";
+    
     String heroClass = null;
     boolean selectHero = false;
     boolean createdHero = false;
@@ -98,7 +100,7 @@ public class LobbyController {
                     // continue;
                 } else {
 
-                    hero = lobby.selectHero(heroName);
+                    hero = LobbyModel.selectHero(heroName);
                     if (!hero.isEmpty()) {
                         view.pickValidOption("Exists");
                         heroName = null;
@@ -116,7 +118,7 @@ public class LobbyController {
                                 continue;
                             } else if (heroClass.contains("Wizard") || heroClass.contains("Tank")
                                     || heroClass.contains("Lazy") || heroClass.contains("MonkeyKing")) {
-                                lobby.createHero(heroName, heroClass, hero);
+                                LobbyModel.createHero(heroName, heroClass, hero);
                                 validClass = true;
                             }
 
@@ -175,7 +177,7 @@ public class LobbyController {
             result = c.readLine();
             if (result.matches("Yes|yes|y|Y")) {
                 Functions.clearScreen();
-                LobbyModel.setVillainsPosition(gameType);
+                LobbyModel.setVillainsPosition(Launcher.gameType);
                 validInput = true;
                 new GameController();
             } else if (result.matches("No|no|n|N")) {
@@ -220,7 +222,7 @@ public class LobbyController {
             result = c.readLine();
             if (result.matches("Yes|yes|y|Y")) {
                 Functions.clearScreen();
-                LobbyModel.setVillainsPosition(gameType);
+                LobbyModel.setVillainsPosition(Launcher.gameType);
                 validInput = true;
                 new GameController();
             } else if (result.matches("No|no|n|N")) {

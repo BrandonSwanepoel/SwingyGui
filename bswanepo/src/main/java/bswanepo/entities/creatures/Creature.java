@@ -8,6 +8,8 @@ import javax.swing.WindowConstants;
 
 import bswanepo.*;
 import bswanepo.Menu;
+import bswanepo.character.MainCharacterPanel;
+import bswanepo.character.SelectCharacterPanel;
 import bswanepo.display.Display;
 import bswanepo.display.MapPassed;
 import bswanepo.entities.Entity;
@@ -18,41 +20,45 @@ import bswanepo.worlds.World;
 
 public abstract class Creature extends Entity {
 
-	public static final int DEFAULT_HEALTH = 10;
-	public static final float DEFAULT_SPEED = 64.0f;
+	public static final float DEFAULT_SPACES = 64.0f;
 	public static final int DEFAULT_CREATURE_WIDTH = 64, DEFAULT_CREATURE_HEIGHT = 64;
 	public static ArrayList<String> landedOnVillain = new ArrayList<>();
 	public static GamePlay gamePlay = new GamePlay();
 	public static Boolean enemy = false;
 
-	protected int health;
-	protected float speed;
+	protected float spaces;
 	protected float xMove, yMove;
 	public static String[] gameOutCome = new String[2];
 
 	public Creature(final Handler handler, final float x, final float y, final int width, final int height) {
 		super(handler, x, y, width, height);
-		health = DEFAULT_HEALTH;
-		speed = DEFAULT_SPEED;
+		spaces = DEFAULT_SPACES;
 		xMove = 0;
 		yMove = 0;
+
 	}
 
 	public void move() {
 		if (enemy == false) {
+			
 			x += xMove;
 			y += yMove;
-			
-				if(x< -1 || x> (World.mapSize-1)*64 || y < -1 || y> (World.mapSize-1)*64){
+			if (x < -1 || x > ((World.mapSize - 1) * 64) || y < -1 || y > ((World.mapSize - 1) * 64)) {
+				// for(int i = 0; i < 100000000;i++){
 
-				MapPassed map = new MapPassed(x, y);
-				x = xMove;
-				y = yMove;
-				return;
-				}
+				// }
+				// if (MapPassed.gameStarted == false) {
+					MapPassed map = new MapPassed(x, y);
+					x = World.CharCol;
+					y = World.CharRow;
+					return;
+				// }
+				
+			}
 
 			landedOnVillain(x, y);
 		}
+		
 
 	}
 
@@ -121,6 +127,8 @@ public abstract class Creature extends Entity {
 									"Luck is on your side you don't have to fight", "Lucky!",
 									JOptionPane.INFORMATION_MESSAGE);
 							enemy = false;
+							x -= xMove;
+			y -= yMove;
 						} else if (runResult == false) {
 
 							final Object[] option = { "okay" };
@@ -154,7 +162,6 @@ public abstract class Creature extends Entity {
 									// currentState = GameState.FIGHT_LOST;
 									JOptionPane.showMessageDialog(Menu.display.getFrame(), "Better luck next time",
 											"You lossed...", JOptionPane.INFORMATION_MESSAGE);
-
 									Menu.display.getCanvas().setVisible(false);
 									Display.cl.show(Display.panelCont, "menuCharacterPanel");
 									enemy = false;
@@ -163,6 +170,7 @@ public abstract class Creature extends Entity {
 
 							}
 						}
+						Menu.display.getKeyManager().pressed = false;
 
 						i = LobbyController.villainRowValues.size();
 
@@ -246,22 +254,6 @@ public abstract class Creature extends Entity {
 
 	public void setyMove(final float yMove) {
 		this.yMove = yMove;
-	}
-
-	public int getHealth() {
-		return health;
-	}
-
-	public void setHealth(final int health) {
-		this.health = health;
-	}
-
-	public float getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(final float speed) {
-		this.speed = speed;
 	}
 
 }

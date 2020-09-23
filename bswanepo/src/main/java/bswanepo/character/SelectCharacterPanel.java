@@ -15,8 +15,11 @@ import javax.swing.border.*;
 
 import bswanepo.Game;
 import bswanepo.Handler;
+import bswanepo.Launcher;
+import bswanepo.Menu;
 import bswanepo.display.Display;
 import bswanepo.display.MapPassed;
+import bswanepo.Menu.*;
 
 import java.util.ArrayList;
 import static javax.swing.JOptionPane.*;
@@ -32,11 +35,10 @@ public class SelectCharacterPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
     private Font titleFont = Game.main.deriveFont(40f);
-    
-    private Handler handler;
-    private JList j1;
-    
-public static Game game;
+
+    public JList j1;
+
+    public static Game game;
     private String clickedHeroName;
     JPanel jsp1 = new JPanel();
     JPanel jsp2 = new JPanel();
@@ -47,6 +49,9 @@ public static Game game;
     public static Display display;
     private JTextField valueField;
     private JTextArea specValueField;
+    public ArrayList<String> entries;
+    public String[] arrayEntities;
+    public Assets assets;
 
     public SelectCharacterPanel(int canvasWidth, int canvasHeight) {
 
@@ -55,11 +60,10 @@ public static Game game;
         this.setMinimumSize(new Dimension(canvasWidth, canvasHeight));
         this.setBackground(Color.white);
 
-        
         JPanel selectPanel = new JPanel();
-        Assets assets = new Assets();
-        ArrayList<String> entries = assets.loadCharactersNames();
-        String[] arrayEntities = new String[entries.size()];
+        assets = new Assets();
+        entries = assets.loadCharactersNames();
+        arrayEntities = new String[entries.size()];
         int i = 0;
         for (String heroes : entries) {
             arrayEntities[i] = heroes;
@@ -68,6 +72,7 @@ public static Game game;
         JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, jsp1, jsp2);
         splitPane.setEnabled(false);
         j1 = new JList(arrayEntities);
+        
         j1.setPreferredSize(new Dimension(canvasWidth - 150, canvasHeight));
         j1.setMaximumSize(new Dimension(canvasWidth - 150, canvasHeight));
         j1.setMinimumSize(new Dimension(canvasWidth - 150, canvasHeight));
@@ -114,20 +119,26 @@ public static Game game;
         startGameButton.setText("Start Game");
         backButton.setText("Back");
 
-        //Button action
+        // Button action
         startGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Display.cl.show(Display.panelCont, "selectCharacterPanel");
-               
+                // Display.cl.show(Display.panelCont, "selectCharacterPanel");
+
                 if (clickedHeroName != null) {
                     LobbyModel.selectHero(clickedHeroName);
                     MapPassed.i = 0;
-                   game = new Game("Round 1", canvasWidth, canvasHeight);
-                    handler = new Handler(game);
-                    handler.setGame(game);
-                    game.start();
-                }else{
+                //    if(game == null){
+                    	
+		
+                    // if(Launcher.handler.getGame().thread == null){
+                        Launcher.handler.getGame().start();
+                   
+                        // Launcher.handler.getGame().setVisible(true);
+                    // }
+                //    }
+                    // }
+                } else {
                     showMessageDialog(null, "Please select a Hero", "Warning", 1);
                 }
 
@@ -137,20 +148,23 @@ public static Game game;
 
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 Display.cl.show(Display.panelCont, "menuCharacterPanel");
             }
         });
-        //Adding button to JPanel
+        // Adding button to JPanel
         this.add(startGameButton);
         this.add(backButton);
 
     }
-    public Game setGame(){
+
+    public Game getGame() {
         return game;
     }
+
     private class ValueReporter implements ListSelectionListener {
         public void valueChanged(ListSelectionEvent event) {
-            Assets assets = new Assets();
+             assets = new Assets();
 
             if (!event.getValueIsAdjusting()) {
                 valueField.setText(j1.getSelectedValue().toString());

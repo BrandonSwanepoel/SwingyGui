@@ -6,31 +6,28 @@ import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.ejb.Handle;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import java.awt.Font;
 
 import bswanepo.Game;
+import bswanepo.Handler;
+import bswanepo.Menu;
 import bswanepo.display.Display;
 
 public class MainCharacterPanel extends JPanel {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
     private Font titleFont = Game.main.deriveFont(45f);
     private String title = "Character";
+    public Handler handle;
+    public static SelectCharacterPanel selectCharacterPanel;
    
 
     public MainCharacterPanel(int canvasWidth, int canvasHeight) {
         super();
-        // GuiButton createCharacterButton = new GuiButton(550 / 2 - buttonWidth / 2, 180, buttonWidth, buttonHeight);
-        // GuiButton selectCharacterButton = new GuiButton(550 / 2 - buttonWidth / 2,
-        //         createCharacterButton.getY() + spacing, buttonWidth, buttonHeight);
-        // GuiButton backButton = new GuiButton(550 / 2 - buttonWidth / 2, selectCharacterButton.getY() + spacing,
-        //         buttonWidth, buttonHeight);
         JButton createCharacterButton = new JButton();
         JButton selectCharacterButton = new JButton();
         JButton backButton = new JButton();
@@ -43,11 +40,7 @@ public class MainCharacterPanel extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // GuiScreen.getInstance().setCurrentPanle("Play");
-                // Game game = new Game("Swingy", canvasWidth, canvasHeight);
-                // handler = new Handler(game);
                 Display.cl.show(Display.panelCont,"createCharacterPanel");
-                // game.start();
 
             }
 
@@ -55,13 +48,13 @@ public class MainCharacterPanel extends JPanel {
         selectCharacterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Display.cl.show(Display.panelCont,"selectCharacterPanel");
                
-                // screen.add("SelectCharacter", new SelectCharacterPanel(canvasWidth,canvasHeight));
-                // screen.setCurrentPanle("SelectCharacter");
-                // screen.update();
-                // remove(backButton);
+                selectCharacterPanel = new SelectCharacterPanel(canvasWidth, canvasHeight);
+                
+                Menu.display.setPanelCont(selectCharacterPanel, "selectCharacterPanel" );
 
+                Display.cl.show(Display.panelCont,"selectCharacterPanel");
+                Menu.display.getPanelCont().remove(3);
             }
         });
         backButton.addActionListener(new ActionListener() {
@@ -69,11 +62,6 @@ public class MainCharacterPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Display.cl.show(Display.panelCont,"menuPanel");
-               
-                // screen.add("Menu", new MainMenuPanel(canvasWidth,canvasHeight));
-                // screen.setCurrentPanle("Menu");
-                // screen.update();
-                // remove(backButton);
             }
         });
         this.add(createCharacterButton);
@@ -81,10 +69,7 @@ public class MainCharacterPanel extends JPanel {
         this.add(backButton);
     }
 
-    // @Override
     public void render(Graphics2D g) {
-        // super.render(g);
-
         g.setFont(titleFont);
         g.setColor(Color.white);
         g.drawString(title, 200, 100);

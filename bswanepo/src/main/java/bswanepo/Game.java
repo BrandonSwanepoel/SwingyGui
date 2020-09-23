@@ -14,90 +14,93 @@ import bswanepo.states.GameState;
 import bswanepo.states.State;
 import bswanepo.textBase.LobbyController;
 import bswanepo.textBase.LobbyModel;
+import bswanepo.worlds.World;
 
 public class Game extends JPanel implements Runnable {
 
 	private Display display;
 	private int width, height;
 	public String title;
-	
-	private boolean running = false;
-	private Thread thread;
-	
+
+	public boolean running = false;
+	public static Thread thread;
+
 	private BufferStrategy bs;
 	private Graphics g;
-	
-	//States
+
+	// States
 	public static State gameState;
 
-	//Input
+	// Input
 	private KeyManager keyManager;
-	
-	//Camera
+
+	// Camera
 	private GameCamera gameCamera;
 
 	public static Game game;
-	
-	//Fonts
-	public static final Font main = new Font("Bebas Neue Regular",Font.PLAIN,28);
-	//Handler
-	private Handler handler;
-	
-	public Game(String title, int width, int height){
+
+	// Fonts
+	public static final Font main = new Font("Bebas Neue Regular", Font.PLAIN, 28);
+	// Handler
+	public static Handler handler;
+
+	public Game(String title, int width, int height) {
+
 		this.width = width;
 		this.height = height;
 		this.title = title;
 		keyManager = Menu.display.getKeyManager();
 		game = this;
+		
 	}
+
 	private void init() {
 
 		display = Menu.display;
-		LobbyModel.setVillainsPosition(LobbyController.gameType);
+		
+		LobbyModel.setVillainsPosition(Launcher.gameType);
 		display.getCardLayout().show(Display.panelCont, "Game");
 		Assets.init();
-		handler = new Handler(this);
-		
-		
+		handler = Launcher.handler;
+
 		gameCamera = new GameCamera(handler, 0, 0);
-		
+
 		gameState = new GameState(handler);
 		State.setState(gameState);
-		
+
 	}
-	
-	private void tick(){
+
+	private void tick() {
 		keyManager.tick();
-		
-		if(State.getState() != null)
+
+		if (State.getState() != null)
 			State.getState().tick();
-			
 	}
-	
-	private void render(){
+
+	private void render() {
 
 		bs = display.getCanvas().getBufferStrategy();
-		if(bs == null){
+		if (bs == null) {
 			display.getCanvas().createBufferStrategy(3);
 			return;
 		}
 		g = bs.getDrawGraphics();
-		//Clear Screen
+		// Clear Screen
 		g.clearRect(0, 0, width, height);
-		//Draw Here!
-		if(State.getState() != null)
+		// Draw Here!
+		if (State.getState() != null)
 			State.getState().render(g);
-		
-		
-		//End Drawing!
+
+		// End Drawing!
 		bs.show();
 		g.dispose();
 	}
-	
-	public void run(){
+
+	public void run() {
+
 		
 		init();
-		
+
 		int fps = 60;
 		double timePerTick = 1000000000 / fps;
 		double delta = 0;
@@ -105,75 +108,65 @@ public class Game extends JPanel implements Runnable {
 		long lastTime = System.nanoTime();
 		long timer = 0;
 		int ticks = 0;
-		
-		while(running){
+
+		while (running) {
 			now = System.nanoTime();
 			delta += (now - lastTime) / timePerTick;
 			timer += now - lastTime;
 			lastTime = now;
-			
-			if(delta >= 1){
+
+			if (delta >= 1) {
 				tick();
 				render();
 				ticks++;
 				delta--;
 			}
-			
-			if(timer >= 1000000000){
+
+			if (timer >= 1000000000) {
 				ticks = 0;
 				timer = 0;
 			}
 		}
-		
+
 		stop();
-		
+
 	}
-	
-	
-	
-	public GameCamera getGameCamera(){
+
+	public GameCamera getGameCamera() {
 		return gameCamera;
 	}
-	
-	public int getWidth(){
+
+	public int getWidth() {
 		return width;
 	}
-	
-	public int getHeight(){
+
+	public int getHeight() {
 		return height;
 	}
-	public State getGame(){
+
+	public State getGame() {
 		return gameState;
 	}
-	public synchronized void start(){
-		this.stop();
-		if(running)
+
+	public synchronized void start() {
+		if (running)
 			return;
 		running = true;
 		thread = new Thread(this);
 		thread.start();
 	}
-	
-	public synchronized void stop(){
-		if(!running)
-			return;
+
+	public synchronized void stop() {
+		// if (!running)
+		// return;
 		running = false;
 		try {
+		
 			thread.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+
 	}
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-

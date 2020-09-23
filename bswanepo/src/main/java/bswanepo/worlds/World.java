@@ -5,6 +5,7 @@ import java.util.Random;
 
 import bswanepo.Handler;
 import bswanepo.textBase.LobbyController;
+import bswanepo.textBase.LobbyModel;
 import bswanepo.tiles.Tile;
 
 public class World {
@@ -13,14 +14,18 @@ public class World {
 	private int width, height;
 	private int spawnX, spawnY;
 	private int[][] tiles;
-	public static int level =Integer.parseInt(LobbyController.heroLvl);
-	public static final int mapSize = (level - 1) * 5 + 10 - (level % 2);
+	public static int level;
+	public static int mapSize;
 	public static int CharRow;
 	public static int CharCol;
 
 	public World(Handler handler) {
 		this.handler = handler;
+		LobbyController.heroLvl = LobbyModel.setHeroLvl(LobbyController.hero.get(0));
+		level =Integer.parseInt(LobbyController.heroLvl);
+		mapSize = (level - 1) * 5 + 10 - (level % 2);
 		loadWorld();
+
 		CharCol = (mapSize / 2)*64;
 		CharRow = (mapSize / 2)*64;
 	}

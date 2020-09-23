@@ -6,7 +6,9 @@ import javax.swing.WindowConstants;
 
 import bswanepo.Game;
 import bswanepo.Handler;
+import bswanepo.Launcher;
 import bswanepo.Menu;
+import bswanepo.character.MainCharacterPanel;
 import bswanepo.character.SelectCharacterPanel;
 import bswanepo.textBase.GamePlay;
 import bswanepo.textBase.LobbyModel;
@@ -17,6 +19,7 @@ public class MapPassed {
     public static String levelUp = null;
     public static Game game;
     private Handler handler;
+    // public static boolean gameStarted = false;
 
     public static int i = 0;
 
@@ -64,7 +67,7 @@ public class MapPassed {
             }
             // view.userLevelUp(levelUp);
         }
-
+      
         Object[] nextGameOption = { "Next Game", "Leave Game" };
 
         JOptionPane nextGame = new JOptionPane("Are you ready for the next game?", JOptionPane.PLAIN_MESSAGE,
@@ -76,16 +79,26 @@ public class MapPassed {
         String nextGameDialogAnswer = (String) nextGame.getValue();
         if (nextGameDialogAnswer.equals("Next Game")) {
             i = 0;
+            // Launcher.handler.getGame().running = false;
             game = new Game("Round 1", Menu.display.getCanvas().getWidth(), Menu.display.getCanvas().getHeight());
-            handler = new Handler(game);
+            // Launcher.handler.setGame(game);
             game.start();
+            // gameStarted = true;
+
 
         } else if (nextGameDialogAnswer.equals("Leave Game")) {
-            Menu.display.getCanvas().setVisible(false);
-            Display.cl.show(Display.panelCont, "menuCharacterPanel");
+            // Menu.display.getCanvas().setVisible(false);
+            System.exit(0);
             nextGameDialog.dispose();
             
         }
+        // Menu.display.getCanvas().setVisible(false);
+            // Game.thread = null;
+      
+            
+            // Display.cl.show(Display.panelCont, "menuCharacterPanel");
+
+            
     }
    
 }

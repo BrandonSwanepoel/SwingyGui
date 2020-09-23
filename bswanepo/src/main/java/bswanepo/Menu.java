@@ -9,13 +9,15 @@ import java.awt.event.*;
 // import bswanepo.states.MenuState;
 import bswanepo.states.State;
 
-public class Menu implements Runnable,MouseListener,MouseMotionListener {
+public class Menu implements MouseListener,MouseMotionListener {
 
 	public static Display display;
 	public int width, height;
 	
 	private boolean running = false;
 	private Thread thread;
+	public static Game game;
+	public Handler handler;
 	
 	//Input
 	private KeyManager keyManager;
@@ -29,17 +31,20 @@ public class Menu implements Runnable,MouseListener,MouseMotionListener {
 		this.height = height;
 		
 	 keyManager = new KeyManager();
+	 run();
 		
 		
 	}
 
 	private void init() {
-
 		display = new Display(width, height);
 		display.getCardLayout().show(Display.panelCont, "1");
 		display.getCanvas().addMouseListener(this);
 		
-        display.getCanvas().addMouseMotionListener(this);
+		display.getCanvas().addMouseMotionListener(this);
+		game = new Game("Round 1", width, height);
+		Launcher.handler.setGame(game);
+                    // handler = new Handler(game);
 	}
 	
 	private void tick(){
@@ -47,6 +52,7 @@ public class Menu implements Runnable,MouseListener,MouseMotionListener {
 		
 		if(State.getState() != null)
 			State.getState().tick();
+			
 	}
 	
 	private void render(){
@@ -77,7 +83,7 @@ public class Menu implements Runnable,MouseListener,MouseMotionListener {
 			}
 		}
 		
-		stop();
+		// stop();
 		
 	}
 	
@@ -89,24 +95,24 @@ public class Menu implements Runnable,MouseListener,MouseMotionListener {
 		return height;
 	}
 
-	public synchronized void start(){
-		if(running)
-			return;
-		running = true;
-		thread = new Thread(this);
-		thread.start();
-	}
+	// public synchronized void start(){
+	// 	if(running)
+	// 		return;
+	// 	running = true;
+	// 	thread = new Thread(this);
+	// 	thread.start();
+	// }
 	
-	public synchronized void stop(){
-		if(!running)
-			return;
-		running = false;
-		try {
-			thread.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
+	// public synchronized void stop(){
+	// 	if(!running)
+	// 		return;
+	// 	running = false;
+	// 	try {
+	// 		thread.join();
+	// 	} catch (InterruptedException e) {
+	// 		e.printStackTrace();
+	// 	}
+	// }
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
@@ -140,7 +146,6 @@ public class Menu implements Runnable,MouseListener,MouseMotionListener {
 	public void mouseReleased(MouseEvent e) {
 		// screen.mouseReleased(e);
 	}
-	
 }
 
 

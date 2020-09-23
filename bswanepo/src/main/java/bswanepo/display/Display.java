@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import bswanepo.Game;
 import bswanepo.Handler;
+import bswanepo.Launcher;
 import bswanepo.character.CreateCharacterPanel;
 import bswanepo.character.HeroCreatedPanel;
 import bswanepo.character.MainCharacterPanel;
@@ -21,7 +22,7 @@ import bswanepo.input.KeyManager;
 public class Display {
 
 	private JFrame frame;
-	private Canvas canvas;
+	public Canvas canvas;
 	public static JPanel panelCont;
 	private JPanel panelMenu;
 	private JPanel panelCharacter;
@@ -66,16 +67,15 @@ public class Display {
 		MainMenuPanel menu = new MainMenuPanel(width, height);
 		panelMenu = menu;
 		panelCont.add(panelMenu, "menuPanel");
-		// cl.show(panelCont,"2");
 
 		//Character main panels
 		MainCharacterPanel characterMenu = new MainCharacterPanel(width, height);
 		menuCharacterPanel = characterMenu;
 		panelCont.add(menuCharacterPanel, "menuCharacterPanel");
 
-		SelectCharacterPanel selectCharacter = new SelectCharacterPanel(width, height);
-		selectCharacterPanel = selectCharacter;
-		panelCont.add(selectCharacterPanel, "selectCharacterPanel");
+		// SelectCharacterPanel selectCharacter = new SelectCharacterPanel(width, height);
+		// selectCharacterPanel = selectCharacter;
+		// panelCont.add(selectCharacterPanel, "selectCharacterPanel");
 
 		CreateCharacterPanel createCharacter = new CreateCharacterPanel(width, height);
 		createCharacterPanel = createCharacter;
@@ -85,23 +85,8 @@ public class Display {
 		heroCreatedPanel = HeroCreated;
 		panelCont.add(heroCreatedPanel, "heroCreatedPanel");
 
-
-		// LandedOnVillainPanel landedOnVillain = new LandedOnVillainPanel(width, height);
-		// landedOnVillainPanel = landedOnVillain;
-		// panelCont.add(landedOnVillainPanel, "landedOnVillainPanel");
-		// cl.show(panelCont,"1");
-
-		// cl.show(panelCont,"1");
-		
-
-		// panelCharacter.setPreferredSize(new Dimension(width, height));
-		// panelCharacter.setMaximumSize(new Dimension(width, height));
-		// panelCharacter.setMinimumSize(new Dimension(width, height));
-		// panelCharacter.setBackground(Color.red);
-		// panelCont.add(panelCharacter,"2");
-
 		frame = new JFrame();
-		frame.setSize(550, 400);
+		frame.setSize(width, height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
@@ -113,12 +98,8 @@ public class Display {
 		mainGamePanel.setMinimumSize(new Dimension(width, height));
 		mainGamePanel.setBackground(Color.black);
 		canvas = new Canvas();
+		// setCanvas();
 		
-		// canvas.setPreferredSize(new Dimension(width, height));
-		// canvas.setMaximumSize(new Dimension(width, height));
-		// canvas.setMinimumSize(new Dimension(width, height));
-
-	
 		panelCont.add(canvas, "Game");
 		frame.add(panelCont);
 		
@@ -126,6 +107,7 @@ public class Display {
 		frame.pack();
 	}
 
+	
 	public KeyManager getKeyManager(){
 		return keyManager;
 	}
@@ -133,7 +115,9 @@ public class Display {
 	public Canvas getCanvas() {
 		return canvas;
 	}
-
+	public void setCanvas(){
+		canvas = new Canvas();
+	}
 	public JPanel getMenuPanel() {
 		return panelMenu;
 	}
@@ -152,5 +136,12 @@ public class Display {
 
 	public JPanel getPanelCont() {
 		return panelCont;
+	}
+	public void setPanelCont(JPanel panel,String name){
+		selectCharacterPanel = panel;
+		panelCont.add(selectCharacterPanel, name);
+	}
+	public void setPanelContCanvas(Canvas panel,String name){
+		panelCont.add(panel, name);
 	}
 }

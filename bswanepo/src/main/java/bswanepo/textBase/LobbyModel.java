@@ -1,19 +1,14 @@
 package bswanepo.textBase;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-import bswanepo.entities.Entity;
 import bswanepo.entities.creatures.Creature;
 
 public class LobbyModel extends LobbyController {
@@ -54,6 +49,36 @@ public class LobbyModel extends LobbyController {
         return hero;
     }
 
+    public static String setHeroLvl(final String heroName) {
+        try {
+           
+            final File file = new File("bswanepo/src/main/resources/characters/Heroes.txt");
+            if (file != null) {
+                final Scanner fileReader = new Scanner(file);
+                while (fileReader.hasNextLine()) {
+
+                    String data = fileReader.nextLine();
+                    if (data.equals(heroName)) {
+                        while (!data.equals("") && fileReader.hasNextLine()) {
+                            if(data.contains("Level")){
+                                final String[] tmp = data.split(" ");
+                                heroLvl = tmp[1];
+                            }
+                            data = fileReader.nextLine();
+                        }
+                        fileReader.close();
+                        return heroLvl;
+                    }
+                }
+                fileReader.close();
+            }
+        } catch (final FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+            System.exit(0);
+        }
+        return heroLvl;
+    }
     public static ArrayList<String> createHero(final String heroName, final String heroClass, ArrayList<String> hero) {
         PrintWriter writer;
         try {

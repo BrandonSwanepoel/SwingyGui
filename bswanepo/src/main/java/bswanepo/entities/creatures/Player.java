@@ -2,7 +2,10 @@ package bswanepo.entities.creatures;
 
 import java.awt.Graphics;
 
+import bswanepo.Game;
 import bswanepo.Handler;
+import bswanepo.Menu;
+import bswanepo.display.Display;
 import bswanepo.display.InGameMenu;
 import bswanepo.gfx.Assets;
 
@@ -29,24 +32,25 @@ public class Player extends Creature {
 			} else if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_D)) {
 				pressed = !pressed;
 			}
-			if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_P)) {
-				menuPressed = !menuPressed;
-			}
+			// if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_P)) {
+			// 	menuPressed = !menuPressed;
+			// }
 		}
 		handler.getGameCamera().centerOnEntity(this);
 
-		if (menuPressed == true) {
-			if (handler.getKeyManager().pause) {
-				if (handler.getKeyManager().pressed == false) {
-					menuPressed =false;
-					InGameMenu gameMenu = new InGameMenu();
-					handler.getKeyManager().pressed = true;
+		// if (menuPressed == true) {
+		// 	if (handler.getKeyManager().pause) {
+		// 		if (handler.getKeyManager().pressed == false) {
+		// 			// menuPressed =false;
+		// 			// InGameMenu gameMenu = new InGameMenu();
+		// 			// handler.getKeyManager().pressed = true;
+		// 			Menu.display.getCanvas().setVisible(false);
+		// 			Display.cl.show(Display.panelCont, "menuCharacterPanel");
+		// 			return;
+		// 		}
 
-					return;
-				}
-
-			}
-		} else if (pressed == true) {
+		// 	}
+		 if (pressed == true) {
 
 			getInput();
 
@@ -64,14 +68,14 @@ public class Player extends Creature {
 		if (handler.getKeyManager().up) {
 			if (handler.getKeyManager().pressed == false) {
 
-				yMove = -speed;
+				yMove = -spaces;
 				handler.getKeyManager().pressed = true;
 			}
 		}
 		if (handler.getKeyManager().down) {
 			if (handler.getKeyManager().pressed == false) {
 
-				yMove = speed;
+				yMove = spaces;
 
 				handler.getKeyManager().pressed = true;
 
@@ -82,7 +86,7 @@ public class Player extends Creature {
 		{
 			if (handler.getKeyManager().pressed == false) {
 
-				xMove = -speed;
+				xMove = -spaces;
 				handler.getKeyManager().pressed = true;
 
 			}
@@ -90,7 +94,7 @@ public class Player extends Creature {
 		if (handler.getKeyManager().right) {
 			if (handler.getKeyManager().pressed == false) {
 
-				xMove = speed;
+				xMove = spaces;
 
 				handler.getKeyManager().pressed = true;
 

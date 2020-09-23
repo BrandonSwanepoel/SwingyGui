@@ -45,7 +45,7 @@ public class CreateCharacterPanel extends JPanel {
         panel.add(new JLabel("Hero Class:", JLabel.RIGHT));
         String[] classStrings = { "Wizard", "Warrior", "Lazy", "Hunter", "Class type" };
 
-        petList= new JComboBox(classStrings);
+        petList = new JComboBox(classStrings);
         panel.add(petList);
         petList.setSelectedIndex(4);
 
@@ -85,7 +85,10 @@ public class CreateCharacterPanel extends JPanel {
                     }
                     if (newName == true && classField != null && !nameField.getText().isBlank()) {
                         LobbyModel.createHero(nameField.getText(), classField, LobbyController.hero);
-                        Display.cl.show(Display.panelCont, "heroCreatedPanel");
+                        // Display.cl.show(Display.panelCont, "heroCreatedPanel");
+                      
+                        Display.cl.show(Display.panelCont, "menuCharacterPanel");
+
                     }
 
                 }
