@@ -3,9 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>swingy</groupId>
-    <artifactId>bswanepo</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <artifactId>swingy</artifactId>
+    <version>.</version>
+    <packaging>jar</packaging>
 
     <name>MVC 1.0 Blank Project (from https://github.com/making/mvc-1.0-blank)</name>
 
@@ -28,15 +28,38 @@
             <artifactId>ozark</artifactId>
             <version>1.0.0-m02</version>
         </dependency>
+   
+		<dependency>
+	    	<groupId>javax.validation</groupId>
+	    	<artifactId>validation-api</artifactId>
+	    	<version>2.0.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.0.2.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator-annotation-processor</artifactId>
+			<version>6.0.2.Final</version>
+        </dependency>
     </dependencies>
+        
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.3</version>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
                 <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                  <archive>
+                    <manifest>
+                      <addClasspath>true</addClasspath>
+                      <!-- <classpathPrefix></classpathPrefix> -->
+                      <mainClass>bswanepo.Launcher</mainClass>
+                    </manifest>
+                  </archive>
                 </configuration>
             </plugin>
         </plugins>

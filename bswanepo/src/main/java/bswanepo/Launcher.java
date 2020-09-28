@@ -1,6 +1,9 @@
 package bswanepo;
 
-import bswanepo.textBase.LobbyController;
+import bswanepo.Controller.Handler;
+import bswanepo.Controller.Menu;
+import bswanepo.Controller.textBaseGame.StartOrEndGame;
+import bswanepo.Controller.textBaseGame.StartScreen;
 
 public class Launcher {
 
@@ -13,17 +16,19 @@ public class Launcher {
 		final int canvasWidth = 550;
 		final int canvasHeight = 400;
 		handler = new Handler();
+		// gameType = args[0];
+		gameType = "console";
 
-		gameType = args[0];
-		if (gameType == "gui") {
+		if (gameType.equals("gui")) {
 			Menu menu = new Menu(canvasWidth, canvasHeight);
 			handler = new Handler();
-		} else if (gameType == "console") {
-			LobbyController lobbyController = new LobbyController();
-			lobbyController.startScreen();
-			lobbyController.startOrEndGame();
+		} else if (gameType.equals("console")) {
+			StartScreen.startScreen();
+			StartOrEndGame.startOrEndGame();
 		}else{
 			System.out.println("Please give a valid Game type");
+			System.out.println(gameType);
+
 		}
 
 		// menu.start();
