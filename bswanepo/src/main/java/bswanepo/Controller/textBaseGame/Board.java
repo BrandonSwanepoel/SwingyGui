@@ -1,8 +1,7 @@
 package bswanepo.Controller.textBaseGame;
 
-import bswanepo.Model.Functions;
-import bswanepo.Model.Model;
-import bswanepo.View.TheView;
+import bswanepo.Launcher;
+import bswanepo.View.terminalView.*;
 
 public class Board {
 
@@ -20,7 +19,7 @@ public class Board {
 public int currentCol;
 
    public static void getBoardRowAndCell() {
-      String[] level = Model.hero.get(2).split(" ");
+      String[] level = Launcher.handler.getPlayerInfo().getLevel().split(" ");
 
       mapSize = (Integer.parseInt(level[1]) - 1) * 5 + 10 - (Integer.parseInt(level[1]) % 2);
       ROWS = mapSize;
@@ -40,8 +39,8 @@ public int currentCol;
    public void init() {
       TheView view = new TheView();
       getBoardRowAndCell();
-      Model.heroLvl = Functions.getLevel(Model.hero);
-      view.gameStart(Model.heroLvl);
+      // Model.heroLvl = Functions.getLevel(Model.hero);
+      view.gameStart(Launcher.handler.getPlayerInfo().getLevel());
       try {
          Thread.sleep(2000);
       } catch (InterruptedException e) {

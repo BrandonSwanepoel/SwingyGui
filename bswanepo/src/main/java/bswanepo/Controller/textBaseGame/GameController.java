@@ -1,13 +1,12 @@
 package bswanepo.Controller.textBaseGame;
 
 import java.util.ArrayList;
-import bswanepo.View.TheView;
-import bswanepo.Model.Functions;
-import bswanepo.Model.GamePlay;
-import bswanepo.Model.GetVillain;
+import bswanepo.View.terminalView.*;
+import bswanepo.Model.gameMethods.Functions;
+import bswanepo.Model.gameMethods.GamePlay;
+import bswanepo.Model.villainMethods.GetVillain;
+import bswanepo.Launcher;
 import bswanepo.Model.Model;
-import bswanepo.Model.GameElements.GameState;
-import bswanepo.Model.GameElements.Map;
 
 public class GameController extends Model {
     private int playerRow;
@@ -41,7 +40,7 @@ public class GameController extends Model {
 
                 String xp = gamePlay.nextLevel(hero);
                 view.beatTheMap(xp, hero);
-                levelUp = gamePlay.levelUp(hero.get(0));
+                levelUp = gamePlay.levelUp();
 
                 if (levelUp != null) {
 
@@ -57,7 +56,7 @@ public class GameController extends Model {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                levelUp = gamePlay.levelUp(hero.get(0));
+                levelUp = gamePlay.levelUp();
 
                 view.gameWinner(gameOutCome[1]);
                 if (!artefact.isEmpty()) {
@@ -295,7 +294,7 @@ public class GameController extends Model {
 
     public void startGameBoard() {
         Board.getBoardRowAndCell();
-        String[] level = hero.get(2).split(" ");
+        String[] level = Launcher.handler.getPlayerInfo().getLevel().split(" ");
         int mapSize = (Integer.parseInt(level[1]) - 1) * 5 + 10 - (Integer.parseInt(level[1]) % 2);
         boolean validInput = false;
         do {

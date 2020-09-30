@@ -1,7 +1,7 @@
 package bswanepo;
 
 import bswanepo.Controller.Handler;
-import bswanepo.Controller.Menu;
+import bswanepo.Controller.guiGame.guiGamePanels.Menu;
 import bswanepo.Controller.textBaseGame.StartOrEndGame;
 import bswanepo.Controller.textBaseGame.StartScreen;
 
@@ -20,7 +20,7 @@ public class Launcher {
 		gameType = "console";
 
 		if (gameType.equals("gui")) {
-			Menu menu = new Menu(canvasWidth, canvasHeight);
+			new Menu(canvasWidth, canvasHeight);
 			handler = new Handler();
 		} else if (gameType.equals("console")) {
 			StartScreen.startScreen();
@@ -30,9 +30,6 @@ public class Launcher {
 			System.out.println(gameType);
 
 		}
-
-		// menu.start();
-
 	}
 
 }

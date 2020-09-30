@@ -5,7 +5,6 @@ import java.awt.Graphics2D;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,9 +14,8 @@ import java.awt.Dimension;
 
 import java.awt.Font;
 import java.awt.*;
-import bswanepo.Controller.Game;
 import bswanepo.Controller.Handler;
-// import bswanepo.character.MainCharacterPanel;
+import bswanepo.Controller.guiGame.guiGamePanels.Game;
 import bswanepo.View.display.Display;
 
 public class MainMenuPanel extends JPanel{

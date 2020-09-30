@@ -1,14 +1,13 @@
 package bswanepo.Controller.textBaseGame;
 
-import bswanepo.Model.CreateHero;
-import bswanepo.Model.Functions;
-import bswanepo.Model.GetAllHeroes;
+import bswanepo.Launcher;
 import bswanepo.Model.Model;
-import bswanepo.Model.SelectHero;
-import bswanepo.View.TheView;
+import bswanepo.Model.characterMethods.*;
+import bswanepo.Model.gameMethods.Functions;
+import bswanepo.View.terminalView.*;
 
-public class StartScreen extends Model{
-    
+public class StartScreen extends Model {
+
     boolean heroCreated = false;
     public static String heroName = null;
 
@@ -76,7 +75,9 @@ public class StartScreen extends Model{
             do {
                 view.pickHeroByName();
                 heroName = c.readLine();
-                hero = SelectHero.selectHero(heroName);
+                Launcher.handler.selectHero(heroName);
+
+                // hero = SelectHero.selectHero(heroName);
                 if (hero.isEmpty()) {
                     view.pickValidOption("Valid hero");
                     // continue;

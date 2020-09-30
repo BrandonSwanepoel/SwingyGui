@@ -1,10 +1,10 @@
 package bswanepo.Controller.textBaseGame;
 
 import bswanepo.Launcher;
-import bswanepo.Model.Functions;
 import bswanepo.Model.Model;
-import bswanepo.Model.SetVillainPosition;
-import bswanepo.View.TheView;
+import bswanepo.Model.gameMethods.Functions;
+import bswanepo.Model.villainMethods.SetVillainPosition;
+import bswanepo.View.terminalView.*;
 
 public class NextMission extends Model{
     public static void nextMission(){

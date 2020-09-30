@@ -1,6 +1,6 @@
 package bswanepo.Model.tiles;
 
-import bswanepo.Controller.gfx.Assets;
+import bswanepo.Controller.guiGame.gfx.Assets;
 
 
 public class SouthFinishGrass extends Tile {

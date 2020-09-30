@@ -9,7 +9,8 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-import bswanepo.Controller.gfx.SpriteSheet;
+import bswanepo.Controller.guiGame.gfx.SpriteSheet;
+import bswanepo.Model.gameMethods.Utils;
 
 
 public class Model {
@@ -25,17 +26,23 @@ public class Model {
 
     private static final int width = 32, height = 32;
 
+	public enum Map {
+        EMPTY, PLAYER, WON, RUN
+    }
+
+    public enum GameState {
+        PLAYING, FIGHT, YOU_WON, RUN, FIGHT_WON, FIGHT_LOST
+    }
+    
 	public static BufferedImage player, darkGrass, grass, stone, northFinishGrass, eastFinishGrass, southFinishGrass,
 			westFinishGrass;
 	private static BufferedImage image;
-	// static Assets getImage = new Assets();
 
 	public static void getImage() {
 		try {
 			InputStream in = Model.class.getClassLoader().getResourceAsStream("textures/sheet.png");
 			System.out.println(in);
 			image = ImageIO.read(in);
-			// image = ImageIO.read(new File("/sheet.png"));
 			in.close();
 			System.out.println(image);
 		} catch (IOException e) {
@@ -48,10 +55,8 @@ public class Model {
 		getImage();
 		SpriteSheet sheet = new SpriteSheet(image);
 
-		// PLAYER SPRITES PROVIDED BY: AddFact
 		player = sheet.crop(width * 4, 0, width, height);
 
-		// northFinishGrass =sheet.crop(width, 0, width, height);
 		grass = sheet.crop(width * 2, 0, width, height);
 		darkGrass = sheet.crop(width * 1, 0, width, height);
 

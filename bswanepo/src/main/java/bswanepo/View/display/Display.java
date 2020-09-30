@@ -7,13 +7,10 @@ import java.awt.CardLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import bswanepo.Launcher;
-import bswanepo.Controller.Game;
-import bswanepo.Controller.KeyManager;
-import bswanepo.View.character.HeroCreatedPanel;
-import bswanepo.View.character.MainCharacterPanel;
+
+import bswanepo.Controller.guiGame.guiGameControllers.KeyManager;
+import bswanepo.View.guiCharacterPanels.*;
 import bswanepo.View.mainMenu.MainMenuPanel;
-import bswanepo.View.character.*;
 
 
 public class Display {
@@ -25,10 +22,7 @@ public class Display {
 	private JPanel panelCharacter;
 	private JPanel menuCharacterPanel;
 	private JPanel selectCharacterPanel;
-	private JPanel heroCreatedPanel;
-	private JPanel landedOnVillainPanel;
 	private JPanel createCharacterPanel;
-	private Game gamePanel;
 	public static CardLayout cl;
 
 	// Input
@@ -51,9 +45,6 @@ public class Display {
 		panelCont = new JPanel();
 		menuCharacterPanel = new JPanel();
 		selectCharacterPanel = new JPanel();
-		createCharacterPanel = new JPanel();
-		heroCreatedPanel = new JPanel();
-		landedOnVillainPanel = new JPanel();
 		
 		
 
@@ -78,9 +69,9 @@ public class Display {
 		createCharacterPanel = createCharacter;
 		panelCont.add(createCharacterPanel, "createCharacterPanel");
 
-		HeroCreatedPanel HeroCreated = new HeroCreatedPanel(width, height);
-		heroCreatedPanel = HeroCreated;
-		panelCont.add(heroCreatedPanel, "heroCreatedPanel");
+		// HeroCreatedPanel HeroCreated = new HeroCreatedPanel(width, height);
+		// heroCreatedPanel = HeroCreated;
+		// panelCont.add(heroCreatedPanel, "heroCreatedPanel");
 
 		frame = new JFrame();
 		frame.setSize(width, height);

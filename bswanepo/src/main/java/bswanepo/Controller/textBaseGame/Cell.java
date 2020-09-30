@@ -1,6 +1,6 @@
 package bswanepo.Controller.textBaseGame;
 
-import bswanepo.Model.GameElements.Map;
+import bswanepo.Model.Model.Map;
 
 public class Cell {
     public static final String ANSI_RESET = "\u001B[0m";
