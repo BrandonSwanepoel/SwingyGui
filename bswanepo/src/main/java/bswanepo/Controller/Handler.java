@@ -84,7 +84,7 @@ public class Handler {
 
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
 		Validator validator = factory.getValidator();
-		playerInfo = new PlayerInfo(hero.get(0), null, hero.get(2), hero.get(3), hero.get(4), hero.get(5), hero.get(6),
+		playerInfo = new PlayerInfo(hero.get(0), hero.get(1), hero.get(2), hero.get(3), hero.get(4), hero.get(5), hero.get(6),
 				hero.get(7), hero.get(8), hero.get(9));
 		// Validations val = new Validations();
 		Set<ConstraintViolation<PlayerInfo>> constraintViolations = validator.validate(playerInfo);
