@@ -22,7 +22,8 @@ public class Model {
     public static ArrayList<String> villains = new ArrayList<>();
     public static ArrayList<String> villainRowValues = new ArrayList<>();
     public static ArrayList<String> villainColValues = new ArrayList<>();
-    public static Console c = System.console();
+	public static Console c = System.console();
+	public static int amountOfCharacters;
 
     private static final int width = 32, height = 32;
 

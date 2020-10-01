@@ -1,6 +1,16 @@
 package bswanepo.Controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
+
+import javax.persistence.EntityManager;
+import javax.persistence.RollbackException;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
 import bswanepo.Controller.guiGame.gfx.GameCamera;
 import bswanepo.Controller.guiGame.guiGameControllers.KeyManager;
 import bswanepo.Controller.guiGame.guiGameControllers.MapPassed;
@@ -12,10 +22,14 @@ import bswanepo.Model.characterMethods.CreateHero;
 import bswanepo.Model.characterMethods.SelectHero;
 import bswanepo.Model.gameMethods.GamePlay;
 import bswanepo.View.display.Display;
+import junit.framework.Assert;
 import bswanepo.Model.*;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import static org.junit.Assert.assertEquals;
 
 public class Handler {
-	
+
 	private Game game;
 	private World world;
 	private Menu menu;
@@ -64,13 +78,19 @@ public class Handler {
 	}
 
 	public void selectHero(String heroName) {
+
 		Model.hero = SelectHero.selectHero(heroName);
 		ArrayList<String> hero = Model.hero;
 
-		playerInfo = new PlayerInfo(hero.get(0), hero.get(1), hero.get(2), hero.get(3), hero.get(4), hero.get(5),
-				hero.get(6), hero.get(7), hero.get(8), hero.get(9));
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		Validator validator = factory.getValidator();
+		playerInfo = new PlayerInfo(hero.get(0), null, hero.get(2), hero.get(3), hero.get(4), hero.get(5), hero.get(6),
+				hero.get(7), hero.get(8), hero.get(9));
 		// Validations val = new Validations();
+		Set<ConstraintViolation<PlayerInfo>> constraintViolations = validator.validate(playerInfo);
 
+		assertEquals(1, constraintViolations.size());
+		assertEquals("must not be null", constraintViolations.iterator().next().getMessage());
 	}
 
 	public PlayerInfo getPlayerInfo() {
@@ -82,7 +102,13 @@ public class Handler {
 	}
 
 	public boolean checkCharacterName(String name) {
-		return checkCharacterName(name);
+		ArrayList<String> checkIfHeroExists = new ArrayList<>();
+		checkIfHeroExists = SelectHero.selectHero(name);
+		if (!checkIfHeroExists.isEmpty()) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	public String levelUp() {
@@ -93,47 +119,53 @@ public class Handler {
 	public static String nextLevel() {
 		return gamePlay.nextLevel(Model.hero);
 	}
+
 	public void setGame(Game game) {
 		this.game = game;
 	}
-	
 
 	public World getWorld() {
 		return world;
 	}
-	public void startGame(int width,int height){
+
+	public void startGame(int width, int height) {
 		MapPassed.i = 0;
 
-		game = new Game(width,height);
+		game = new Game(width, height);
 		setGame(game);
 		game.start();
-		
-		
+
 	}
-	public void resumeGame(){
+
+	public void resumeGame() {
 		MapPassed.i = 0;
 
-		
-        getGame().start();
-        // game.start();
+		getGame().start();
+		// game.start();
 	}
-	public int getMapSize(){
+
+	public int getMapSize() {
 		return mapSize;
 	}
-	public void setMapSize(){
-		int level =Integer.parseInt(getLevel());
+
+	public void setMapSize() {
+		int level = Integer.parseInt(getLevel());
 		mapSize = (level - 1) * 5 + 10 - (level % 2);
 	}
-	public String getLevel(){
+
+	public String getLevel() {
 		return Model.heroLvl;
 	}
+
 	public void setWorld(World world) {
 		this.world = world;
 	}
-	public int getCanvasWidth(int width){
+
+	public int getCanvasWidth(int width) {
 		return width;
 	}
-	public int getCanvasHeight(int height){
+
+	public int getCanvasHeight(int height) {
 		return height;
 	}
 

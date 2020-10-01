@@ -12,7 +12,7 @@ import bswanepo.Model.Model;
 public class GamePlay extends Model implements Actionable {
 
     @Override
-    public String[] fight(final ArrayList<String> villain, final ArrayList<String> hero) {
+    public String[] fight(ArrayList<String> villain, ArrayList<String> hero) {
         final Random random = new Random();
         int win = 0;
         int lose = 0;
@@ -101,18 +101,18 @@ public class GamePlay extends Model implements Actionable {
         // String[] value = hero.get(2).split(" ");
         // String value = ;
         int levelInt = 0;
-        if(Launcher.gameType == "gui"){
-            levelInt = Integer.parseInt(Launcher.handler.getPlayerInfo().getLevel());
-        }else if( Launcher.gameType == "console"){
-            String value[] = Launcher.handler.getPlayerInfo().getLevel().split(" ");
-            levelInt = Integer.parseInt(value[1]);
+        // if(Launcher.gameType == "gui"){
+        // levelInt = Integer.parseInt(Launcher.handler.getPlayerInfo().getLevel());
+        // }else if( Launcher.gameType == "console"){
+        String levelValue[] = Launcher.handler.getPlayerInfo().getLevel().split(" ");
+        levelInt = Integer.parseInt(levelValue[1]);
 
-        }
-        
+        // }
+
         int pow = (int) Math.pow((levelInt - 1), 2);
         int lvlMeter = levelInt * 1000 + pow * 450;
-        String value = Launcher.handler.getPlayerInfo().getXp();
-        int xpValue = Integer.parseInt(value);
+        String value[] = Launcher.handler.getPlayerInfo().getXp().split(" ");
+        int xpValue = Integer.parseInt(value[1]);
         if (xpValue >= lvlMeter) {
             levelInt++;
             returnValue = String.valueOf(levelInt);
@@ -132,18 +132,18 @@ public class GamePlay extends Model implements Actionable {
 
                         while (fileReader.hasNextLine()) {
 
-                            if (data.equals(Launcher.handler.getPlayerInfo().getName())){
+                            if (data.equals(Launcher.handler.getPlayerInfo().getName())) {
                                 while (!data.equals("")) {
                                     if (data.contains("Level")) {
                                         writer.println("Level " + levelInt);
                                         data = fileReader.nextLine();
-                                        String heroLevel =String.valueOf(levelInt);
-                                        Launcher.handler.getPlayerInfo().setLevel("Level "+heroLevel);
+                                        String heroLevel = String.valueOf(levelInt);
+                                        Launcher.handler.getPlayerInfo().setLevel("Level " + heroLevel);
                                     } else {
                                         writer.println(data);
-                                        if(fileReader.hasNextLine()){
+                                        if (fileReader.hasNextLine()) {
                                             data = fileReader.nextLine();
-                                        }else{
+                                        } else {
                                             data = "";
                                         }
                                     }
@@ -218,8 +218,9 @@ public class GamePlay extends Model implements Actionable {
 
                     while (fileReader.hasNextLine()) {
 
-                        if (data.contains(heroName)) {
-                            while (!data.equals("")) {
+                        if (data.equals(heroName)) {
+                            for(int i = 0;i < 10;i++){
+                               
                                 if (data.contains(stats)) {
                                     final String[] value = data.split(" ");
                                     if (value[1].equals("Points")) {
@@ -230,25 +231,33 @@ public class GamePlay extends Model implements Actionable {
 
                                     heroValue += artefactValue * 5;
                                     writer.println(value[0] + " " + heroValue);
+                                    if(fileReader.hasNextLine())
                                     data = fileReader.nextLine();
                                     returnValue[0] = value[0];
                                     returnValue[1] = String.valueOf(artefactValue * 5);
 
                                 } else if (!data.contains(artefact.get(0))) {
                                     writer.println(data);
+                                    if(fileReader.hasNextLine())
                                     data = fileReader.nextLine();
 
                                 } else if (data.contains(artefact.get(0))) {
 
                                     writer.println(artefact.get(0) + " " + artefact.get(1));
+                                    if(fileReader.hasNextLine())
                                     data = fileReader.nextLine();
-                                    // writer.println("");
+                                   
 
                                 }
+                               
                             }
                         } else {
                             writer.println(data);
-                            data = fileReader.nextLine();
+                            if (fileReader.hasNextLine())
+                                data = fileReader.nextLine();
+                            
+                            
+
                         }
 
                     }
@@ -297,7 +306,7 @@ public class GamePlay extends Model implements Actionable {
 
                     while (fileReader.hasNextLine()) {
 
-                        if (data.contains(heroName)) {
+                        if (data.equals(heroName)) {
                             while (!data.equals("")) {
                                 if (data.contains("XP")) {
                                     final String[] value = data.split(" ");
@@ -306,7 +315,7 @@ public class GamePlay extends Model implements Actionable {
                                     writer.println(value[0] + " " + heroValue);
                                     data = fileReader.nextLine();
                                     returnValue = String.valueOf(xpValue);
-                                    Launcher.handler.getPlayerInfo().setXp(String.valueOf(heroValue));
+                                    Launcher.handler.getPlayerInfo().setXp("XP " + String.valueOf(heroValue));
 
                                 } else if (!data.contains("XP")) {
                                     if (data.contains("Helm")) {
@@ -351,12 +360,12 @@ public class GamePlay extends Model implements Actionable {
     @Override
     public String nextLevel(ArrayList<String> hero) {
         int heroLevel = 0;
-        if(Launcher.gameType == "gui"){
-        heroLevel = Integer.parseInt(Launcher.handler.getPlayerInfo().getLevel());
-        }else if(Launcher.gameType == "console"){
-            String value[] = Launcher.handler.getPlayerInfo().getLevel().split(" ");
-            heroLevel = Integer.parseInt(value[1]);
-        }
+        // if(Launcher.gameType == "gui"){
+        // heroLevel = Integer.parseInt(Launcher.handler.getPlayerInfo().getLevel());
+        // }else if(Launcher.gameType == "console"){
+        String value[] = Launcher.handler.getPlayerInfo().getLevel().split(" ");
+        heroLevel = Integer.parseInt(value[1]);
+        // }
         int xp = heroLevel * 100;
 
         return gainedXp(String.valueOf(xp), Launcher.handler.getPlayerInfo().getName());

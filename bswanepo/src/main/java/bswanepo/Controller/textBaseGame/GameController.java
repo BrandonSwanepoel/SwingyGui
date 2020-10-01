@@ -56,7 +56,7 @@ public class GameController extends Model {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                levelUp = gamePlay.levelUp();
+                // levelUp = gamePlay.levelUp();
 
                 view.gameWinner(gameOutCome[1]);
                 if (!artefact.isEmpty()) {
@@ -77,7 +77,7 @@ public class GameController extends Model {
                                     e.printStackTrace();
                                 }
                                 Functions.clearScreen();
-                                view.missionText(heroLvl);
+                                view.missionText(Launcher.handler.getPlayerInfo().getLevel());
 
                             } else {
                                 view.notRealArtefact();
@@ -87,7 +87,7 @@ public class GameController extends Model {
                                     e.printStackTrace();
                                 }
                                 Functions.clearScreen();
-                                view.missionText(heroLvl);
+                                view.missionText(Launcher.handler.getPlayerInfo().getLevel());
                             }
                             valid = true;
 
@@ -99,7 +99,7 @@ public class GameController extends Model {
                                 e.printStackTrace();
                             }
 
-                            view.missionText(heroLvl);
+                            view.missionText(Launcher.handler.getPlayerInfo().getLevel());
                             valid = true;
 
                         } else {
@@ -111,7 +111,7 @@ public class GameController extends Model {
                 if (levelUp != null) {
 
                     view.userLevelUp(levelUp);
-                    view.missionText(heroLvl);
+                    view.missionText(Launcher.handler.getPlayerInfo().getLevel());
 
                 }
                 board.paint();
@@ -130,7 +130,7 @@ public class GameController extends Model {
                 NextMission.nextMission();
 
             } else if (currentState == GameState.RUN) {
-                view.missionText(heroLvl);
+                view.missionText(Launcher.handler.getPlayerInfo().getLevel());
                 currentState = GameState.PLAYING;
                 board.paint();
 
@@ -143,6 +143,7 @@ public class GameController extends Model {
         board.init();
         startGameBoard();
         board.paint();
+        hero = Launcher.handler.getPlayerInfo().getPlayer();
         currentPlayer = Map.PLAYER;
         currentState = GameState.PLAYING;
     }
@@ -195,7 +196,7 @@ public class GameController extends Model {
         Functions.clearScreen();
 
         if (row >= 0 && row < Board.ROWS && col >= 0 && col < Board.COLS) {
-            view.missionText(heroLvl);
+            view.missionText(Launcher.handler.getPlayerInfo().getLevel());
 
             if (won == true) {
                 board.cells[tempRow][tempColumn].content = Map.WON;
@@ -239,7 +240,7 @@ public class GameController extends Model {
                         action = Model.c.readLine();
                         if (action.matches("Fight|fight|f|F|FIGHT")) {
                             Functions.clearScreen();
-
+                            hero = Launcher.handler.getPlayerInfo().getPlayer();
                             gameOutCome = gamePlay.fight(landedOnVillain, hero);
 
                             if (gameOutCome[0] == "Winner") {
@@ -267,6 +268,7 @@ public class GameController extends Model {
                                 break;
                             } else if (runResult == false) {
                                 view.badOdds();
+                                hero = Launcher.handler.getPlayerInfo().getPlayer();
                                 gameOutCome = gamePlay.fight(landedOnVillain, hero);
 
                                 if (gameOutCome[0] == "Winner") {

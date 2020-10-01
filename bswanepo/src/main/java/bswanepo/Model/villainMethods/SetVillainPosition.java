@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+import bswanepo.Launcher;
 import bswanepo.Controller.guiGame.entities.player.*;
 import bswanepo.Model.Model;
 
@@ -45,7 +46,7 @@ public class SetVillainPosition extends Model{
 
                     final String data = fileReader.nextLine();
                     writer.println(data);
-                    if (data.equals(Model.hero.get(2))) {
+                    if (data.equals(Launcher.handler.getPlayerInfo().getLevel())){
 
                         writer.println("Row " + villainRowPlace.get(i));
                         writer.println("Col " + villainColumnPlace.get(i));

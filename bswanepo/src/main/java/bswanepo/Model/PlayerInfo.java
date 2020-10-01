@@ -1,30 +1,39 @@
 package bswanepo.Model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.*;
-
-public class PlayerInfo {
-    @NotNull
+@Entity
+public class PlayerInfo implements Serializable{
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    @NotNull(message = "Name cannot be null.")
     private String name;
-    @NotNull
+    @NotNull(message = "HeroClass cannot be null.")
     private String heroClass;
-    @NotNull
+    @NotNull(message = "Level cannot be null.")
     private String level;
-    @NotNull
+    @NotNull(message = "XP cannot be null.")
     private String xp;
-    @NotNull
+    @NotNull(message = "Attack cannot be null.")
     private String attack;
-    @NotNull
+    @NotNull(message = "Defense cannot be null.")
     private String defense;
-    @NotNull
+    @NotNull(message = "Hit Points cannot be null.")
     private String hitPoints;
-    @NotNull
+    @NotNull(message = "Weapons cannot be null.")
     private String weapons;
-    @NotNull
+    @NotNull(message = "Armor cannot be null.")
     private String armor;
-    @NotNull
+    @NotNull(message = "Helm cannot be null.")
     private String helm;
+    public ArrayList<String> player = new ArrayList<>();
 
-    public PlayerInfo(String name, String heroClass, String level, String xp, String attack, String defense,
+    public PlayerInfo(@NotNull String name, String heroClass, String level, String xp, String attack, String defense,
             String hitPoints, String weapons, String armor, String helm) {
         this.name = name;
         this.heroClass = heroClass;
@@ -38,6 +47,24 @@ public class PlayerInfo {
         this.helm = helm;
     }
 
+    public ArrayList<String> getPlayer(){
+
+        if(!player.equals(null)){
+            player.clear();
+        }
+        player.add(name);
+        player.add(heroClass);
+        player.add(level);
+        player.add(xp);
+        player.add(attack);
+        player.add(defense);
+        player.add(hitPoints);
+        player.add(weapons);
+        player.add(armor);
+        player.add(helm);
+
+        return player;
+    }
     public String getName() {
         return name;
     }

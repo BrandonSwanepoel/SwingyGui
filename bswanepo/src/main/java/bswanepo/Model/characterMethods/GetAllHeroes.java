@@ -21,7 +21,7 @@ public class GetAllHeroes extends Model{
         final File file = new File("bswanepo/src/main/resources/characters/Heroes.txt");
 
 
-        int amountOfCharacters = AmountOfCharacters.amountOfCharacters(file);
+        Model.amountOfCharacters = AmountOfCharacters.amountOfCharacters(file);
         // inputStream = LobbyModel.class.getClassLoader().getResourceAsStream("characters/Heroes.txt");
         Scanner fileReader = null;
         try {

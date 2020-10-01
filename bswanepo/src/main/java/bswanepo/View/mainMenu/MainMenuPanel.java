@@ -14,7 +14,6 @@ import java.awt.Dimension;
 
 import java.awt.Font;
 import java.awt.*;
-import bswanepo.Controller.Handler;
 import bswanepo.Controller.guiGame.guiGamePanels.Game;
 import bswanepo.View.display.Display;
 
@@ -31,12 +30,9 @@ public class MainMenuPanel extends JPanel{
     public Display display;
 
     public JPanel panelCont;
-    private Graphics2D g;
-    private JLabel label;
     public static JButton playButton;
     public static JButton quitButton;
     public JLabel logo;
-    private Handler handler;
     public MainMenuPanel(int canvasWidth, int canvasHeight) {
         new GridLayout(3, 1, 8, 8);
         logo = new JLabel(title);

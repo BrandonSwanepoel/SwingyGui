@@ -76,15 +76,15 @@ public class CreateCharacterPanel extends JPanel {
                 if (nameField.getText().isBlank()) {
                     showMessageDialog(null, "Name field is empty", "Warning", 1);
                 } else {
+
                     newName = handler.checkCharacterName(nameField.getText());
                     if (newName == false) {
                         showMessageDialog(null, "This Name is taken", "Warning", 1);
-                    } else if (classField == null) {
+                    } else if (classField == null || classField == "Class type") {
                         showMessageDialog(null, "Please choose a class", "Warning", 1);
 
-                    }
-                    if (newName == true && classField != null && !nameField.getText().isBlank()) {
-                        handler.createHero(nameField.getText(),classField);
+                    } else if (newName == true && classField != null && !nameField.getText().isBlank()) {
+                        handler.createHero(nameField.getText(), classField);
                         Display.cl.show(Display.panelCont, "menuCharacterPanel");
 
                     }
@@ -102,5 +102,4 @@ public class CreateCharacterPanel extends JPanel {
 
     }
 
-  
 }

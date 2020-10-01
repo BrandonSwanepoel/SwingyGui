@@ -8,7 +8,6 @@ import java.awt.Font;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.validation.constraints.NotNull;
 import javax.swing.border.*;
 import bswanepo.Launcher;
 import bswanepo.Controller.Handler;
@@ -28,7 +27,6 @@ public class SelectCharacterPanel extends JPanel {
 
     public JList j1;
 
-    @NotNull(message = "Please select a Hero")
     private String clickedHeroName;
     JPanel jsp1 = new JPanel();
     JPanel jsp2 = new JPanel();
@@ -137,7 +135,7 @@ public class SelectCharacterPanel extends JPanel {
         });
         // Adding button to JPanel
         this.add(startGameButton);
-        this.add(backButton);
+        // this.add(backButton);
 
     }
 

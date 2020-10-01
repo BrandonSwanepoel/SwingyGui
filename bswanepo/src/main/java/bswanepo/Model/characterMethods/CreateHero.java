@@ -10,8 +10,6 @@ public class CreateHero extends Model {
 
     public static ArrayList<String> createHero(String heroName, String heroClass, ArrayList<String> hero) {
         PrintWriter writer;
-        System.out.println(hero);
-        System.out.println(heroClass);
         try {
 
             // hero.clear();

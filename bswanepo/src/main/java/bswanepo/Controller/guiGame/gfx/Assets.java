@@ -63,6 +63,9 @@ public class Assets {
 			} else if (file.get(i).isEmpty()) {
 				i++;
 				heroNames.add(file.get(i));
+				if(i == (file.size())-10){
+					break;
+				}
 
 			}
 		}

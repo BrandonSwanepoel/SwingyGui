@@ -270,7 +270,7 @@ public class TheView {
 
         System.out.println(ANSI_BLUE + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + ANSI_RESET);
         System.out.println(ANSI_YELLOW + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + ANSI_RESET);
-        System.out.println("                 Map Level " + heroLvl);
+        System.out.println("                 Map " + heroLvl);
 
         System.out.println(" Mission: Try and exit the map without dying");
         System.out.println(ANSI_YELLOW + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + ANSI_RESET);
@@ -370,7 +370,7 @@ public class TheView {
         System.out.println("              The Game Started");
         System.out.println("                  GoodLuck ");
         System.out.println(ANSI_YELLOW + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + ANSI_RESET);
-        System.out.println("                 Map Level " + heroLvl);
+        System.out.println("                 Map " + heroLvl);
         System.out.println(" Mission: Try and exit the map without dying");
         System.out.println(ANSI_YELLOW + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + ANSI_RESET);
         System.out.println(ANSI_BLUE + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + ANSI_RESET);

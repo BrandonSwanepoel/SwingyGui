@@ -25,8 +25,8 @@ public class SetHeroLvl extends Model{
                     if (data.equals(Launcher.handler.getPlayerInfo().getName())){
                         while (!data.equals("") && fileReader.hasNextLine()) {
                             if (data.contains("Level")) {
-                                final String[] tmp = data.split(" ");
-                                Launcher.handler.getPlayerInfo().setLevel(tmp[1]);
+                                // final String[] tmp = data.split(" ");
+                                Launcher.handler.getPlayerInfo().setLevel(data);
                             }
                             data = fileReader.nextLine();
                         }

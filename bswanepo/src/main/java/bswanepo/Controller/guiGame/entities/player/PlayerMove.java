@@ -103,8 +103,6 @@ public abstract class PlayerMove extends Entity {
 						}
 
 					} else if (pickedOption.equals("Run")) {
-						System.out.println("RUNNNN");
-
 						final boolean runResult = gamePlay.run();
 
 						if (runResult == true) {

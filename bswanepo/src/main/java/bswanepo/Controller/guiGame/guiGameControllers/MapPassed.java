@@ -21,7 +21,7 @@ public class MapPassed {
         i++;
         String xp = Handler.nextLevel();
         String pickedOption ;
-        Launcher.handler.getPlayerInfo().setXp(xp);
+        // Launcher.handler.getPlayerInfo().setXp(xp);
         pickedOption = PopUpMessages.beatTheMap(xp);
         if (pickedOption.equals("AWESOME")) {
 

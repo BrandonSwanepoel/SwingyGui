@@ -5,11 +5,13 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.validation.constraints.NotBlank;
+
 import bswanepo.Model.Model;
 
 public class SelectHero extends Model {
     
-    public static ArrayList<String> selectHero(final String heroName) {
+    public static ArrayList<String> selectHero(@NotBlank String heroName) {
         // Set<ConstraintViolation<SelectCharacterPanel>> constraintViolations =
         // validator.validate( heroName );
 

@@ -11,7 +11,7 @@ public class AmountOfCharacters extends Model {
     public static int amountOfCharacters(final File file) {
         int amount = 0;
         try {
-            Scanner fileReader = new Scanner(file).useDelimiter("\\A");
+            Scanner fileReader = new Scanner(file);
        
         if (fileReader != null) {
             while (fileReader.hasNext()) {

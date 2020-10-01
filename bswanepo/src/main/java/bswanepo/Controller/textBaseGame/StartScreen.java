@@ -75,7 +75,7 @@ public class StartScreen extends Model {
             do {
                 view.pickHeroByName();
                 heroName = c.readLine();
-                Launcher.handler.selectHero(heroName);
+                hero = SelectHero.selectHero(heroName);
 
                 // hero = SelectHero.selectHero(heroName);
                 if (hero.isEmpty()) {
@@ -83,6 +83,8 @@ public class StartScreen extends Model {
                     // continue;
                 } else {
                     view.pickedHero(hero);
+                Launcher.handler.selectHero(heroName);
+
                     StartOrEndGame.startOrEndGame();
                     selectHero = true;
                     // selectedHero = true;
@@ -136,6 +138,7 @@ public class StartScreen extends Model {
                                 continue;
                             }
                         } while (validClass == false);
+                        Launcher.handler.selectHero(heroName);
                         view.heroCreated();
                         // startOrEndGame();
                         createdHero = true;

@@ -2,7 +2,6 @@ package bswanepo.Controller.textBaseGame;
 
 import bswanepo.Launcher;
 import bswanepo.Model.Model;
-import bswanepo.Model.PlayerInfo;
 import bswanepo.Model.gameMethods.Functions;
 import bswanepo.Model.villainMethods.SetVillainPosition;
 import bswanepo.View.terminalView.*;
