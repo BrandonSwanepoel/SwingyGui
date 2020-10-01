@@ -152,3 +152,25 @@ Weapons 1
 Armor 1
 Helm 100
 Helm 100
+
+l
+Class Lazy
+Level 1
+XP 0
+Attack 10
+Defense 10
+Hit Points 10
+Weapons 10
+Armor 10
+Helm 10
+
+p
+Class Lazy
+Level 1
+XP 0
+Attack 10
+Defense 10
+Hit Points 10
+Weapons 10
+Armor 10
+Helm 10

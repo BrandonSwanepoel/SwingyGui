@@ -11,29 +11,30 @@ public class PlayerInfo implements Serializable{
      *
      */
     private static final long serialVersionUID = 1L;
-    @NotNull(message = "Name cannot be null.")
+    
+    @NotNull
     private String name;
-    @NotNull(message = "HeroClass cannot be null.")
+    @NotNull
     private String heroClass;
-    @NotNull(message = "Level cannot be null.")
+    @NotNull
     private String level;
-    @NotNull(message = "XP cannot be null.")
+    @NotNull
     private String xp;
-    @NotNull(message = "Attack cannot be null.")
+    @NotNull
     private String attack;
-    @NotNull(message = "Defense cannot be null.")
+    @NotNull
     private String defense;
-    @NotNull(message = "Hit Points cannot be null.")
+    @NotNull
     private String hitPoints;
-    @NotNull(message = "Weapons cannot be null.")
+    @NotNull
     private String weapons;
-    @NotNull(message = "Armor cannot be null.")
+    @NotNull
     private String armor;
-    @NotNull(message = "Helm cannot be null.")
+    @NotNull
     private String helm;
     public ArrayList<String> player = new ArrayList<>();
 
-    public PlayerInfo(@NotNull String name, String heroClass, String level, String xp, String attack, String defense,
+    public PlayerInfo(String name, String heroClass, String level, String xp, String attack, String defense,
             String hitPoints, String weapons, String armor, String helm) {
         this.name = name;
         this.heroClass = heroClass;
