@@ -10,7 +10,6 @@ public class Tile {
 	public static Tile[] tiles = new Tile[256];
 	public static Tile grassTile = new GrassTile(0);
 	public static Tile darkGrassTile = new DarkGrassTile(1);
-	// public static Tile rockTile = new RockTile(2);
 	public static Tile northFinishTile = new NorthFinishGrass(3);
 	public static Tile westFinishTile = new WestFinishGrass(4);
 	public static Tile eastFinishTile = new EastFinishGrass(5);

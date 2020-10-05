@@ -3,10 +3,10 @@ package bswanepo.Model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import javax.persistence.Entity;
 import javax.validation.constraints.*;
-@Entity
-public class PlayerInfo implements Serializable{
+// import javax.persistence.Entity;
+// @Entity
+public class PlayerInfo{
     /**
      *
      */

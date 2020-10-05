@@ -8,6 +8,6 @@ public interface Actionable{
     public String levelUp();
     public String gainedXp(String xp, String heroName);
     public String nextLevel(ArrayList<String> hero);
-    public String[] pickedUpArtefact(ArrayList<String> artefact,String heroName);
+    public String[] pickedUpArtifact(ArrayList<String> artifact,String heroName);
     
 }

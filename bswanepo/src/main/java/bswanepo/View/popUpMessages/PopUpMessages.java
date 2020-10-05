@@ -33,39 +33,45 @@ public class PopUpMessages {
 
         JOptionPane.showMessageDialog(Menu.display.getFrame(), "Better luck next time", "You lossed...",
                 JOptionPane.INFORMATION_MESSAGE);
-                System.exit(0);
+        System.exit(0);
 
         JOptionPane.getRootFrame().dispose();
 
     }
-    public static void notARealArtefact() {
-        JOptionPane.getRootFrame().dispose();
 
-        JOptionPane.showMessageDialog(Menu.display.getFrame(), "That was not a real artefact... ", "It was dropped",
-                JOptionPane.INFORMATION_MESSAGE);
-
-        JOptionPane.getRootFrame().dispose();
+    public static void showErrorMessage(String message, String heading) {
+        JOptionPane.showMessageDialog(null, message, heading, 1);
 
     }
-    public static void leaveArtefact() {
+
+    public static void notARealArtifact() {
         JOptionPane.getRootFrame().dispose();
 
-        JOptionPane.showMessageDialog(Menu.display.getFrame(), "Your loss...", " ",
-                JOptionPane.INFORMATION_MESSAGE);
-
-        JOptionPane.getRootFrame().dispose();
-
-    }
-    public static void artefactInfo(String[] result,ArrayList<String> artefact) {
-        JOptionPane.getRootFrame().dispose();
-        String message = "  You picked up a level " + artefact.get(1) + " " + artefact.get(0) + " artefact";
-        JOptionPane.showMessageDialog(Menu.display.getFrame(),message, "It increased your " + result[0] + " with "+ result[1] + "!",
+        JOptionPane.showMessageDialog(Menu.display.getFrame(), "That was not a real artifact... ", "It was dropped",
                 JOptionPane.INFORMATION_MESSAGE);
 
         JOptionPane.getRootFrame().dispose();
 
     }
 
+    public static void leaveArtifact() {
+        JOptionPane.getRootFrame().dispose();
+
+        JOptionPane.showMessageDialog(Menu.display.getFrame(), "Your loss...", " ", JOptionPane.INFORMATION_MESSAGE);
+
+        JOptionPane.getRootFrame().dispose();
+
+    }
+
+    public static void artifactInfo(String[] result, ArrayList<String> artifact) {
+        JOptionPane.getRootFrame().dispose();
+        String message = "  You picked up a level " + artifact.get(1) + " " + artifact.get(0) + " artifact";
+        JOptionPane.showMessageDialog(Menu.display.getFrame(), message,
+                "It increased your " + result[0] + " with " + result[1] + "!", JOptionPane.INFORMATION_MESSAGE);
+
+        JOptionPane.getRootFrame().dispose();
+
+    }
 
     public static String unluckyYouMustFight() {
 
@@ -91,11 +97,11 @@ public class PopUpMessages {
         JOptionPane.getRootFrame().dispose();
     }
 
-    public static String artefactPickedUp() {
-        final Object[] artefactOptions = { "Pick up", "Leave" };
-        
-        JOptionPane jop = new JOptionPane("The villain dropped an artefact do you want to pick it up? ", JOptionPane.PLAIN_MESSAGE,
-                JOptionPane.YES_NO_OPTION, null, artefactOptions, artefactOptions[0]);
+    public static String artifactPickedUp() {
+        final Object[] artifactOptions = { "Pick up", "Leave" };
+
+        JOptionPane jop = new JOptionPane("The villain dropped an artifact do you want to pick it up? ",
+                JOptionPane.PLAIN_MESSAGE, JOptionPane.YES_NO_OPTION, null, artifactOptions, artifactOptions[0]);
         JDialog dialog = jop.createDialog(null, "Whoop Whoop");
         dialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -106,42 +112,45 @@ public class PopUpMessages {
 
         }
         return pickedOption;
-        
+
     }
-    
+
     public static String beatTheMap(String xp) {
         Object[] beatTheMapOption = { "AWESOME" };
 
-        JOptionPane beatTheMap = new JOptionPane("\tWell done " + Launcher.handler.getPlayerInfo().getName() + "! \n\tYou gained " + xp + " XP ", JOptionPane.PLAIN_MESSAGE,
-                JOptionPane.YES_NO_OPTION, null, beatTheMapOption, beatTheMapOption[0]);
+        JOptionPane beatTheMap = new JOptionPane(
+                "\tWell done " + Launcher.handler.getPlayerInfo().getName() + "! \n\tYou gained " + xp + " XP ",
+                JOptionPane.PLAIN_MESSAGE, JOptionPane.YES_NO_OPTION, null, beatTheMapOption, beatTheMapOption[0]);
         JDialog beatTheMapDialog = beatTheMap.createDialog(null, "You have Passed the Mission!");
         beatTheMapDialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         beatTheMapDialog.setVisible(true);
         String beatTheMapDialogAnswer = (String) beatTheMap.getValue();
-        if(beatTheMapDialogAnswer != null){
-        // JOptionPane.getRootFrame().dispose();
-            
+        if (beatTheMapDialogAnswer != null) {
+            // JOptionPane.getRootFrame().dispose();
+
         }
         return beatTheMapDialogAnswer;
 
     }
-    public static String levelUp(){
+
+    public static String levelUp() {
         Object[] levelUpOption = { "Whoop Whoop" };
 
-        JOptionPane beatTheMap = new JOptionPane("You have Leveled UP!!", JOptionPane.PLAIN_MESSAGE, JOptionPane.YES_NO_OPTION,
-                null, levelUpOption, levelUpOption[0]);
-                JDialog beatTheMapDialog = beatTheMap.createDialog(null, "LEVEL UP!!");
+        JOptionPane beatTheMap = new JOptionPane("You have Leveled UP!!", JOptionPane.PLAIN_MESSAGE,
+                JOptionPane.YES_NO_OPTION, null, levelUpOption, levelUpOption[0]);
+        JDialog beatTheMapDialog = beatTheMap.createDialog(null, "LEVEL UP!!");
         beatTheMapDialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         beatTheMapDialog.setVisible(true);
         String beatTheMapDialogAnswer = (String) beatTheMap.getValue();
-        if(beatTheMapDialogAnswer != null){
+        if (beatTheMapDialogAnswer != null) {
             // JOptionPane.getRootFrame().dispose();
         }
         return beatTheMapDialogAnswer;
     }
-    public static String startNextGame(){
+
+    public static String startNextGame() {
         Object[] nextGameOption = { "Next Game", "Leave Game" };
 
         JOptionPane nextGame = new JOptionPane("Are you ready for the next game?", JOptionPane.PLAIN_MESSAGE,

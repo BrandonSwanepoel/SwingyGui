@@ -1,16 +1,13 @@
 package bswanepo.Controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Set;
 
-import javax.persistence.EntityManager;
-import javax.persistence.RollbackException;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-
+import bswanepo.Launcher;
 import bswanepo.Controller.guiGame.gfx.GameCamera;
 import bswanepo.Controller.guiGame.guiGameControllers.KeyManager;
 import bswanepo.Controller.guiGame.guiGameControllers.MapPassed;
@@ -22,14 +19,11 @@ import bswanepo.Model.characterMethods.CreateHero;
 import bswanepo.Model.characterMethods.SelectHero;
 import bswanepo.Model.gameMethods.GamePlay;
 import bswanepo.View.display.Display;
-import junit.framework.Assert;
 import bswanepo.Model.*;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import static org.junit.Assert.assertEquals;
 
 public class Handler {
-
+	
 	private Game game;
 	private World world;
 	private Menu menu;
@@ -37,9 +31,7 @@ public class Handler {
 	private PlayerInfo playerInfo;
 	private int mapSize;
 
-	// public Handler(Game game){
-	// this.game = game;
-	// }
+	
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
@@ -81,17 +73,16 @@ public class Handler {
 
 		Model.hero = SelectHero.selectHero(heroName);
 		ArrayList<String> hero = Model.hero;
-
-		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-		Validator validator = factory.getValidator();
-		playerInfo = new PlayerInfo(hero.get(0), hero.get(1), hero.get(2), hero.get(3), hero.get(4), hero.get(5), hero.get(6),
-				hero.get(7), hero.get(8), hero.get(9));
-		// Validations val = new Validations();
+		
+		playerInfo = new PlayerInfo(hero.get(0), hero.get(1), hero.get(2), hero.get(3), hero.get(4), hero.get(5),
+				hero.get(6), hero.get(7), hero.get(8), hero.get(9));
+				ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+	Validator validator = factory.getValidator();
 		Set<ConstraintViolation<PlayerInfo>> constraintViolations = validator.validate(playerInfo);
 
-		if(constraintViolations.size()==1){
+		if (constraintViolations.size() == 1) {
 
-			assertEquals("ERROR", constraintViolations.iterator().next().getMessage());
+			assertEquals("Must not be null", constraintViolations.iterator().next().getMessage());
 
 		}
 	}
@@ -152,7 +143,8 @@ public class Handler {
 	}
 
 	public void setMapSize() {
-		int level = Integer.parseInt(getLevel());
+		String levelStringSplit[] = Launcher.handler.getPlayerInfo().getLevel().split(" ");
+		int level = Integer.parseInt(levelStringSplit[1]);
 		mapSize = (level - 1) * 5 + 10 - (level % 2);
 	}
 

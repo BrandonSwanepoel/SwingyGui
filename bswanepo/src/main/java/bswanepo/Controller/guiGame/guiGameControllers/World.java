@@ -74,8 +74,6 @@ public class World {
 		
 		width = mapSize;
 		height = mapSize;
-		// spawnX = mapSize / 2;
-		// spawnY = mapSize / 2;
 		int random = 15;
 
 		tiles = new int[width][height];

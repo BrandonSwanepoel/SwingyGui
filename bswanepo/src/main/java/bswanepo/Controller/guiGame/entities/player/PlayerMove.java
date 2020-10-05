@@ -73,16 +73,16 @@ public abstract class PlayerMove extends Entity {
 						if (PlayerMove.gameOutCome[0] == "Winner") {
 							PopUpMessages.fightWon();
 
-							if (!Model.artefact.isEmpty()) {
+							if (!Model.artifact.isEmpty()) {
 
-								pickedOption = PopUpMessages.artefactPickedUp();
+								pickedOption = PopUpMessages.artifactPickedUp();
 								if (pickedOption.equals("Pick up")) {
-									String[] result = gamePlay.pickedUpArtefact(Model.artefact,
+									String[] result = gamePlay.pickedUpArtifact(Model.artifact,
 											Launcher.handler.getPlayerInfo().getName());
 									if (!result[0].equals("ERROR")) {
-										PopUpMessages.artefactInfo(result, Model.artefact);
+										PopUpMessages.artifactInfo(result, Model.artifact);
 									} else {
-										PopUpMessages.notARealArtefact();
+										PopUpMessages.notARealArtifact();
 									}
 
 								} else if (pickedOption.equals("Leave")) {
@@ -112,6 +112,8 @@ public abstract class PlayerMove extends Entity {
 							PlayerMove.enemy = false;
 							Entity.x -= PlayerMove.xMove;
 							Entity.y -= PlayerMove.yMove;
+							i = Model.villainRowValues.size();
+
 						} else if (runResult == false) {
 							pickedOption = PopUpMessages.unluckyYouMustFight();
 							if (pickedOption.equals("okay")) {

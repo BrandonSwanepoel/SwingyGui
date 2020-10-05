@@ -42,13 +42,10 @@ public class MainMenuPanel extends JPanel{
 
          this.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // super.addMouseListener(this);
         this.setPreferredSize(new Dimension(canvasWidth, canvasHeight));
         this.setMaximumSize(new Dimension(canvasWidth, canvasHeight));
         this.setMinimumSize(new Dimension(canvasWidth, canvasHeight));
         this.setFocusable(false);
-        // playButton = new GuiButton(550 / 2 - buttonWidth / 2, buttonWidth, buttonWidth, buttonHeight);
-        // quitButton = new GuiButton(550 / 2 - buttonWidth / 2, playButton.getY() + spacing, buttonWidth, buttonHeight);
         playButton = new JButton();
         quitButton = new JButton();
         playButton.setText("Game");
@@ -77,7 +74,6 @@ public class MainMenuPanel extends JPanel{
 
     // @Override
     public void render(Graphics2D g) {
-        // super.render(g);
 
         g.setFont(titleFont);
         g.setColor(Color.white);

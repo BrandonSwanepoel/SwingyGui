@@ -28,24 +28,9 @@ public class Player extends PlayerMove {
 			} else if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_D)) {
 				pressed = !pressed;
 			}
-			// if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_P)) {
-			// 	menuPressed = !menuPressed;
-			// }
 		}
 		handler.getGameCamera().centerOnEntity(this);
 
-		// if (menuPressed == true) {
-		// 	if (handler.getKeyManager().pause) {
-		// 		if (handler.getKeyManager().pressed == false) {
-		// 			// menuPressed =false;
-		// 			// InGameMenu gameMenu = new InGameMenu();
-		// 			// handler.getKeyManager().pressed = true;
-		// 			Menu.display.getCanvas().setVisible(false);
-		// 			Display.cl.show(Display.panelCont, "menuCharacterPanel");
-		// 			return;
-		// 		}
-
-		// 	}
 		 if (pressed == true) {
 
 			getInput();

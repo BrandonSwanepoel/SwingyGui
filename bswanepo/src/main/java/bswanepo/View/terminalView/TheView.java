@@ -212,12 +212,12 @@ public class TheView {
         System.out.println("Lets see how you did brave one ...");
     }
 
-    public void droppedArtefact() {
-        System.out.println("The villain dropped an artefact do you want to pick it up? [Y/N]");
+    public void droppedArtifact() {
+        System.out.println("The villain dropped an artifact do you want to pick it up? [Y/N]");
     }
 
-    public void notRealArtefact() {
-        System.out.println("That was not a real artefact... It was dropped");
+    public void notRealArtifact() {
+        System.out.println("That was not a real artifact... It was dropped");
     }
 
     public void yourLoss() {
@@ -283,10 +283,10 @@ public class TheView {
         System.out.print("Pick a direction: ");
     }
 
-    public void artefactPickUp(String[] result, ArrayList<String> artefact) {
+    public void artifactPickUp(String[] result, ArrayList<String> artifact) {
         System.out.println(ANSI_GREEN + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + ANSI_RESET);
         System.out.println(ANSI_YELLOW + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + ANSI_RESET);
-        System.out.println("  You picked up a level " + artefact.get(1) + " " + artefact.get(0) + " artefact");
+        System.out.println("  You picked up a level " + artifact.get(1) + " " + artifact.get(0) + " artifact");
         System.out.println("    It increased your " + ANSI_GREEN + result[0] + ANSI_RESET + " with " + ANSI_YELLOW
                 + result[1] + ANSI_RESET + "!");
         System.out.println(ANSI_YELLOW + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + ANSI_RESET);

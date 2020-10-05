@@ -23,7 +23,7 @@ Helm 10
 Arcane
 Class MonkeyKing
 Level 2
-XP 6800
+XP 7000
 Attack 30
 Defense 25
 Hit Points 35
@@ -111,9 +111,9 @@ Helm 10
 i
 Class Wizard
 Level 2
-XP 1100
-Attack 515
-Defense 525
+XP 1600
+Attack 525
+Defense 555
 Hit Points 500
 Weapons 1
 Armor 2
@@ -166,6 +166,61 @@ Helm 10
 
 p
 Class Lazy
+Level 1
+XP 0
+Attack 10
+Defense 10
+Hit Points 10
+Weapons 10
+Armor 10
+Helm 10
+
+ouma
+Class Lazy
+Level 1
+XP 200
+Attack 10
+Defense 10
+Hit Points 10
+Weapons 10
+Armor 10
+Helm 10
+
+pap
+Class Wizard
+Level 1
+XP 100
+Attack 10
+Defense 10
+Hit Points 10
+Weapons 10
+Armor 10
+Helm 10
+
+janali
+Class Warrior
+Level 1
+XP 0
+Attack 10
+Defense 10
+Hit Points 10
+Weapons 10
+Armor 10
+Helm 10
+
+james
+Class Wizard
+Level 1
+XP 0
+Attack 10
+Defense 10
+Hit Points 10
+Weapons 10
+Armor 10
+Helm 10
+
+jamess
+Class Tank
 Level 1
 XP 0
 Attack 10

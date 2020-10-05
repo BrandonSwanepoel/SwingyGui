@@ -6,7 +6,6 @@ import bswanepo.Launcher;
 import bswanepo.Controller.guiGame.gfx.Assets;
 
 public class Functions {
-    
 
     public static String getLevel(ArrayList<String> hero) {
         final String[] value = Launcher.handler.getPlayerInfo().getLevel().split(" ");
@@ -18,12 +17,15 @@ public class Functions {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-    public void setMapSize(int mapSize){
+
+    public void setMapSize(int mapSize) {
         Functions.mapSize = mapSize;
     }
-    public int getMapSize(){
+
+    public int getMapSize() {
         return Functions.mapSize;
     }
+
     public boolean checkCharacterName(String newName) {
 
         Assets assets = new Assets();
@@ -39,5 +41,6 @@ public class Functions {
         return true;
 
     }
+
     private static int mapSize;
 }

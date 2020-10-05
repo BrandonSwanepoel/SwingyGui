@@ -17,8 +17,8 @@ public class GetAllHeroes extends Model{
         // hero.clear();
 
         // InputStream inputStream = LobbyModel.class.getClassLoader().getResourceAsStream("characters/Heroes.txt");
-        // final File file = new File("src/main/resources/characters/Heroes.txt");
-        final File file = new File("bswanepo/src/main/resources/characters/Heroes.txt");
+        final File file = new File("src/main/resources/characters/Heroes.txt");
+        // final File file = new File("bswanepo/src/main/resources/characters/Heroes.txt");
 
 
         Model.amountOfCharacters = AmountOfCharacters.amountOfCharacters(file);

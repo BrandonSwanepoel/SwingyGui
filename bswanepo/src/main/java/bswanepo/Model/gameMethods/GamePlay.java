@@ -20,7 +20,7 @@ public class GamePlay extends Model implements Actionable {
         String villainXp = null;
         final ArrayList<Integer> villainStats = new ArrayList<>();
         final ArrayList<Integer> heroStats = new ArrayList<>();
-        artefact.clear();
+        artifact.clear();
 
         // get villain Stats
         for (int i = 1; i < villain.size(); i++) {
@@ -33,10 +33,10 @@ public class GamePlay extends Model implements Actionable {
                 int value = Integer.parseInt(tmp[1]);
                 value += random.nextInt(10 - 1 + 1) + 1;
                 villainStats.add(value);
-            } else if (tmp[0].equals("Artefact")) {
-                // artefact
-                artefact.add(tmp[1]);
-                artefact.add(tmp[2]);
+            } else if (tmp[0].equals("Artifact")) {
+                // artifact
+                artifact.add(tmp[1]);
+                artifact.add(tmp[2]);
 
             } else if (tmp[0].equals("XP")) {
                 villainXp = tmp[1];
@@ -98,16 +98,9 @@ public class GamePlay extends Model implements Actionable {
     public String levelUp() {
         PrintWriter writer;
         String returnValue = null;
-        // String[] value = hero.get(2).split(" ");
-        // String value = ;
         int levelInt = 0;
-        // if(Launcher.gameType == "gui"){
-        // levelInt = Integer.parseInt(Launcher.handler.getPlayerInfo().getLevel());
-        // }else if( Launcher.gameType == "console"){
         String levelValue[] = Launcher.handler.getPlayerInfo().getLevel().split(" ");
         levelInt = Integer.parseInt(levelValue[1]);
-
-        // }
 
         int pow = (int) Math.pow((levelInt - 1), 2);
         int lvlMeter = levelInt * 1000 + pow * 450;
@@ -118,16 +111,16 @@ public class GamePlay extends Model implements Actionable {
             returnValue = String.valueOf(levelInt);
 
             try {
-                // final File file = new File("src/main/resources/characters/Heroes.txt");
+                final File file = new File("src/main/resources/characters/Heroes.txt");
 
-                final File file = new File("bswanepo/src/main/resources/characters/Heroes.txt");
+                // final File file = new File("bswanepo/src/main/resources/characters/Heroes.txt");
                 if (file != null) {
                     final Scanner fileReader = new Scanner(file);
                     try {
-                        // writer = new PrintWriter("src/main/resources/characters/HeroesTmp.txt",
-                        // "UTF-8");
+                        writer = new PrintWriter("src/main/resources/characters/HeroesTmp.txt",
+                        "UTF-8");
 
-                        writer = new PrintWriter("bswanepo/src/main/resources/characters/HeroesTmp.txt", "UTF-8");
+                        // writer = new PrintWriter("bswanepo/src/main/resources/characters/HeroesTmp.txt", "UTF-8");
                         String data = fileReader.nextLine();
 
                         while (fileReader.hasNextLine()) {
@@ -139,6 +132,7 @@ public class GamePlay extends Model implements Actionable {
                                         data = fileReader.nextLine();
                                         String heroLevel = String.valueOf(levelInt);
                                         Launcher.handler.getPlayerInfo().setLevel("Level " + heroLevel);
+                                        Model.heroLvl = "Level " + heroLevel;
                                     } else {
                                         writer.println(data);
                                         if (fileReader.hasNextLine()) {
@@ -162,9 +156,9 @@ public class GamePlay extends Model implements Actionable {
                         e1.printStackTrace();
                     }
                     fileReader.close();
-                    // final File tmpFile = new File("src/main/resources/characters/HeroesTmp.txt");
+                    final File tmpFile = new File("src/main/resources/characters/HeroesTmp.txt");
 
-                    final File tmpFile = new File("bswanepo/src/main/resources/characters/HeroesTmp.txt");
+                    // final File tmpFile = new File("bswanepo/src/main/resources/characters/HeroesTmp.txt");
                     file.delete();
                     tmpFile.renameTo(file);
 
@@ -180,40 +174,39 @@ public class GamePlay extends Model implements Actionable {
     }
 
     @Override
-    public String[] pickedUpArtefact(final ArrayList<String> artefact, final String heroName) {
+    public String[] pickedUpArtifact(final ArrayList<String> artifact, final String heroName) {
         PrintWriter writer;
         int heroValue;
         final String[] returnValue = new String[2];
         String stats = null;
-        int artefactValue = 0;
+        int artifactValue = 0;
 
-        if (artefact.isEmpty()) {
+        if (artifact.isEmpty()) {
             returnValue[0] = "ERROR";
             returnValue[1] = "ERROR";
             return returnValue;
         } else {
-            artefactValue = Integer.parseInt(artefact.get(1));
+            artifactValue = Integer.parseInt(artifact.get(1));
 
         }
 
         try {
-            // final File file = new File("src/main/resources/characters/Heroes.txt");
-
-            final File file = new File("bswanepo/src/main/resources/characters/Heroes.txt");
-            if (artefact.get(0).equals("Weapons")) {
+            final File file = new File("src/main/resources/characters/Heroes.txt");
+            // final File file = new File("bswanepo/src/main/resources/characters/Heroes.txt");
+            if (artifact.get(0).equals("Weapons")) {
                 stats = "Attack";
-            } else if (artefact.get(0).equals("Armor")) {
+            } else if (artifact.get(0).equals("Armor")) {
                 stats = "Defense";
-            } else if (artefact.get(0).equals("Helm")) {
+            } else if (artifact.get(0).equals("Helm")) {
                 stats = "Hit Points";
             }
             if (file != null) {
                 final Scanner fileReader = new Scanner(file);
                 try {
-                    // writer = new PrintWriter("src/main/resources/characters/HeroesTmp.txt",
-                    // "UTF-8");
+                    writer = new PrintWriter("src/main/resources/characters/HeroesTmp.txt",
+                    "UTF-8");
 
-                    writer = new PrintWriter("bswanepo/src/main/resources/characters/HeroesTmp.txt", "UTF-8");
+                    // writer = new PrintWriter("bswanepo/src/main/resources/characters/HeroesTmp.txt", "UTF-8");
                     String data = fileReader.nextLine();
 
                     while (fileReader.hasNextLine()) {
@@ -229,21 +222,21 @@ public class GamePlay extends Model implements Actionable {
                                         heroValue = Integer.parseInt(value[1]);
                                     }
 
-                                    heroValue += artefactValue * 5;
+                                    heroValue += artifactValue * 5;
                                     writer.println(value[0] + " " + heroValue);
                                     if(fileReader.hasNextLine())
                                     data = fileReader.nextLine();
                                     returnValue[0] = value[0];
-                                    returnValue[1] = String.valueOf(artefactValue * 5);
+                                    returnValue[1] = String.valueOf(artifactValue * 5);
 
-                                } else if (!data.contains(artefact.get(0))) {
+                                } else if (!data.contains(artifact.get(0))) {
                                     writer.println(data);
                                     if(fileReader.hasNextLine())
                                     data = fileReader.nextLine();
 
-                                } else if (data.contains(artefact.get(0))) {
+                                } else if (data.contains(artifact.get(0))) {
 
-                                    writer.println(artefact.get(0) + " " + artefact.get(1));
+                                    writer.println(artifact.get(0) + " " + artifact.get(1));
                                     if(fileReader.hasNextLine())
                                     data = fileReader.nextLine();
                                    
@@ -269,9 +262,9 @@ public class GamePlay extends Model implements Actionable {
                     e1.printStackTrace();
                 }
                 fileReader.close();
-                // final File tmpFile = new File("src/main/resources/characters/HeroesTmp.txt");
+                final File tmpFile = new File("src/main/resources/characters/HeroesTmp.txt");
 
-                final File tmpFile = new File("bswanepo/src/main/resources/characters/HeroesTmp.txt");
+                // final File tmpFile = new File("bswanepo/src/main/resources/characters/HeroesTmp.txt");
                 file.delete();
                 tmpFile.renameTo(file);
 
@@ -292,16 +285,16 @@ public class GamePlay extends Model implements Actionable {
         final int xpValue = Integer.parseInt(xp);
 
         try {
-            // final File file = new File("src/main/resources/characters/Heroes.txt");
+            final File file = new File("src/main/resources/characters/Heroes.txt");
 
-            final File file = new File("bswanepo/src/main/resources/characters/Heroes.txt");
+            // final File file = new File("bswanepo/src/main/resources/characters/Heroes.txt");
             if (file != null) {
                 final Scanner fileReader = new Scanner(file);
                 try {
-                    // writer = new PrintWriter("src/main/resources/characters/HeroesTmp.txt",
-                    // "UTF-8");
+                    writer = new PrintWriter("src/main/resources/characters/HeroesTmp.txt",
+                    "UTF-8");
 
-                    writer = new PrintWriter("bswanepo/src/main/resources/characters/HeroesTmp.txt", "UTF-8");
+                    // writer = new PrintWriter("bswanepo/src/main/resources/characters/HeroesTmp.txt", "UTF-8");
                     String data = fileReader.nextLine();
 
                     while (fileReader.hasNextLine()) {
@@ -341,9 +334,9 @@ public class GamePlay extends Model implements Actionable {
                     e1.printStackTrace();
                 }
                 fileReader.close();
-                // final File tmpFile = new File("src/main/resources/characters/HeroesTmp.txt");
+                final File tmpFile = new File("src/main/resources/characters/HeroesTmp.txt");
 
-                final File tmpFile = new File("bswanepo/src/main/resources/characters/HeroesTmp.txt");
+                // final File tmpFile = new File("bswanepo/src/main/resources/characters/HeroesTmp.txt");
                 file.delete();
                 tmpFile.renameTo(file);
                 return returnValue;
@@ -360,12 +353,8 @@ public class GamePlay extends Model implements Actionable {
     @Override
     public String nextLevel(ArrayList<String> hero) {
         int heroLevel = 0;
-        // if(Launcher.gameType == "gui"){
-        // heroLevel = Integer.parseInt(Launcher.handler.getPlayerInfo().getLevel());
-        // }else if(Launcher.gameType == "console"){
         String value[] = Launcher.handler.getPlayerInfo().getLevel().split(" ");
         heroLevel = Integer.parseInt(value[1]);
-        // }
         int xp = heroLevel * 100;
 
         return gainedXp(String.valueOf(xp), Launcher.handler.getPlayerInfo().getName());

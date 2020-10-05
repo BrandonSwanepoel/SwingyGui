@@ -14,10 +14,10 @@ public class CreateHero extends Model {
 
             // hero.clear();
 
-            // writer = new PrintWriter(new
-            // FileWriter("src/main/resources/characters/Heroes.txt", true));
+            writer = new PrintWriter(new
+            FileWriter("src/main/resources/characters/Heroes.txt", true));
 
-            writer = new PrintWriter(new FileWriter("bswanepo/src/main/resources/characters/Heroes.txt", true));
+            // writer = new PrintWriter(new FileWriter("bswanepo/src/main/resources/characters/Heroes.txt", true));
 
             writer.println("");
             writer.println(heroName);

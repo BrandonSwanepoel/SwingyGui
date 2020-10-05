@@ -25,13 +25,13 @@ public class SelectCharacterPanel extends JPanel {
 
     // private Font titleFont = Game.main.deriveFont(40f);
 
-    public JList j1;
+    public JList heroList;
 
     private String clickedHeroName;
-    JPanel jsp1 = new JPanel();
-    JPanel jsp2 = new JPanel();
-    JLabel jsp1label = new JLabel("Hero Names");
-    JLabel jsp2label = new JLabel("Hero Specs");
+    JPanel  heroNamesPanel = new JPanel();
+    JPanel pickedHeroSpecs = new JPanel();
+    JLabel heroListNameLabel = new JLabel("Hero Names");
+    JLabel specsLabel = new JLabel("Hero Specs");
     Font displayFont = new Font("Serif", Font.BOLD, 16);
     Font specFont = new Font("Serif", Font.PLAIN, 14);
     public static Display display;
@@ -58,24 +58,24 @@ public class SelectCharacterPanel extends JPanel {
             arrayEntities[i] = heroes;
             i++;
         }
-        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, jsp1, jsp2);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, heroNamesPanel, pickedHeroSpecs);
         splitPane.setEnabled(false);
-        j1 = new JList(arrayEntities);
+        heroList = new JList(arrayEntities);
 
-        j1.setPreferredSize(new Dimension(canvasWidth - 150, canvasHeight));
-        j1.setMaximumSize(new Dimension(canvasWidth - 150, canvasHeight));
-        j1.setMinimumSize(new Dimension(canvasWidth - 150, canvasHeight));
-        j1.setVisibleRowCount(4);
+        heroList.setPreferredSize(new Dimension(canvasWidth - 150, canvasHeight));
+        heroList.setMaximumSize(new Dimension(canvasWidth - 150, canvasHeight));
+        heroList.setMinimumSize(new Dimension(canvasWidth - 150, canvasHeight));
+        heroList.setVisibleRowCount(4);
 
-        j1.setFont(displayFont);
-        j1.addListSelectionListener(new ValueReporter());
-        JScrollPane j1ListPane = new JScrollPane(j1);
-        jsp1.add(jsp1label);
-        jsp1.add(j1ListPane);
+        heroList.setFont(displayFont);
+        heroList.addListSelectionListener(new ValueReporter());
+        JScrollPane heroListListPane = new JScrollPane(heroList);
+        heroNamesPanel.add(heroListNameLabel);
+        heroNamesPanel.add(heroListListPane);
 
         // Get clicked hero specs
 
-        jsp2.add(jsp2label);
+        pickedHeroSpecs.add(specsLabel);
 
         JPanel listPanel = new JPanel();
         listPanel.setBackground(Color.white);
@@ -98,7 +98,7 @@ public class SelectCharacterPanel extends JPanel {
         Border valuePanelBorder = BorderFactory.createTitledBorder("Your Hero");
         valuePanel.setBorder(valuePanelBorder);
         valuePanel.add(valueLabel);
-        jsp2.add(j2ListPane);
+        pickedHeroSpecs.add(j2ListPane);
         valuePanel.add(valueField);
         this.add(selectPanel);
         this.add(valuePanel);
@@ -108,14 +108,13 @@ public class SelectCharacterPanel extends JPanel {
         startGameButton.setText("Start Game");
         backButton.setText("Back");
 
+        
         // Button action
         startGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Display.cl.show(Display.panelCont, "selectCharacterPanel");
                 if (clickedHeroName != null) {
                     handler.selectHero(clickedHeroName);
-		//  Model.hero =SelectHero.selectHero(clickedHeroName);
 
                     handler.startGame(canvasWidth, canvasHeight);
 
@@ -135,7 +134,6 @@ public class SelectCharacterPanel extends JPanel {
         });
         // Adding button to JPanel
         this.add(startGameButton);
-        // this.add(backButton);
 
     }
 
@@ -144,9 +142,9 @@ public class SelectCharacterPanel extends JPanel {
             assets = new Assets();
 
             if (!event.getValueIsAdjusting()) {
-                valueField.setText(j1.getSelectedValue().toString());
+                valueField.setText(heroList.getSelectedValue().toString());
 
-                clickedHeroName = j1.getSelectedValue().toString();
+                clickedHeroName = heroList.getSelectedValue().toString();
 
                 String heroSpecs = assets.loadCharactersSpecs(clickedHeroName);
                 specValueField.setText(heroSpecs);

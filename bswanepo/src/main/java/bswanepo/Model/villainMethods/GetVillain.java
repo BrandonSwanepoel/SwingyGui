@@ -14,11 +14,8 @@ public class GetVillain extends Model{
         String[] tmpRow;
         String[] tmpCol;
         String lvl = null;
-        // final File file = new
-        // File("bswanepo/src/main/resources/characters/Villains.txt");
-        // InputStream inputStream = LobbyModel.class.getClassLoader().getResourceAsStream("characters/Villains.txt");
-        // final File file = new File("src/main/resources/characters/Villains.txt");
-        final File file = new File("bswanepo/src/main/resources/characters/Villains.txt");
+        final File file = new File("src/main/resources/characters/Villains.txt");
+        // final File file = new File("bswanepo/src/main/resources/characters/Villains.txt");
 
         try {
             // fileReader = new Scanner(file).useDelimiter("\\A");

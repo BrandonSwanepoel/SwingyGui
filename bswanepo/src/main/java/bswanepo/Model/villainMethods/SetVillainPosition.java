@@ -28,8 +28,8 @@ public class SetVillainPosition extends Model{
         villainRowValues.clear();
         villainColValues.clear();
 
-        // final File file = new File("src/main/resources/characters/Villains.txt");
-        final File file = new File("bswanepo/src/main/resources/characters/Villains.txt");
+        final File file = new File("src/main/resources/characters/Villains.txt");
+        // final File file = new File("bswanepo/src/main/resources/characters/Villains.txt");
 
         // InputStream inputStream = LobbyModel.class.getClassLoader().getResourceAsStream("characters/Villains.txt");
 
@@ -39,8 +39,8 @@ public class SetVillainPosition extends Model{
                 fileReader = new Scanner(file);
            
             try {
-                // writer = new PrintWriter("src/main/resources/characters/VillainsTmp.txt", "UTF-8");
-                writer = new PrintWriter("bswanepo/src/main/resources/characters/VillainsTmp.txt", "UTF-8");
+                writer = new PrintWriter("src/main/resources/characters/VillainsTmp.txt", "UTF-8");
+                // writer = new PrintWriter("bswanepo/src/main/resources/characters/VillainsTmp.txt", "UTF-8");
 
                 while (fileReader.hasNextLine()) {
 
@@ -66,8 +66,8 @@ public class SetVillainPosition extends Model{
                 e1.printStackTrace();
             }
             fileReader.close();
-            // final File tmpFile = new File("src/main/resources/characters/VillainsTmp.txt");
-            final File tmpFile = new File("bswanepo/src/main/resources/characters/VillainsTmp.txt");
+            final File tmpFile = new File("src/main/resources/characters/VillainsTmp.txt");
+            // final File tmpFile = new File("bswanepo/src/main/resources/characters/VillainsTmp.txt");
 
             file.delete();
             tmpFile.renameTo(file);

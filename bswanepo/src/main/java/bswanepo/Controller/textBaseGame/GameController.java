@@ -59,18 +59,18 @@ public class GameController extends Model {
                 // levelUp = gamePlay.levelUp();
 
                 view.gameWinner(gameOutCome[1]);
-                if (!artefact.isEmpty()) {
+                if (!artifact.isEmpty()) {
 
                     do {
-                        view.droppedArtefact();
+                        view.droppedArtifact();
 
                         action = Model.c.readLine();
                         if (action.matches("Y|y|Yes|yes|YES")) {
                             Functions.clearScreen();
 
-                            String[] result = gamePlay.pickedUpArtefact(artefact, hero.get(0));
+                            String[] result = gamePlay.pickedUpArtifact(artifact, hero.get(0));
                             if (!result[0].equals("ERROR")) {
-                                view.artefactPickUp(result, artefact);
+                                view.artifactPickUp(result, artifact);
                                 try {
                                     Thread.sleep(4000);
                                 } catch (InterruptedException e) {
@@ -80,7 +80,7 @@ public class GameController extends Model {
                                 view.missionText(Launcher.handler.getPlayerInfo().getLevel());
 
                             } else {
-                                view.notRealArtefact();
+                                view.notRealArtifact();
                                 try {
                                     Thread.sleep(2000);
                                 } catch (InterruptedException e) {

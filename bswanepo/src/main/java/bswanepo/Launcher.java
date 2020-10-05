@@ -16,8 +16,8 @@ public class Launcher {
 		final int canvasWidth = 550;
 		final int canvasHeight = 400;
 		handler = new Handler();
-		// gameType = args[0];
-		gameType = "console";
+		gameType = args[0];
+		// gameType = "gui";
 
 		if (gameType.equals("gui")) {
 			new Menu(canvasWidth, canvasHeight);

@@ -14,8 +14,8 @@ public class SetHeroLvl extends Model{
         
         try {
 
-            // final File file = new File("src/main/resources/characters/Heroes.txt");
-            final File file = new File("bswanepo/src/main/resources/characters/Heroes.txt");
+            final File file = new File("src/main/resources/characters/Heroes.txt");
+            // final File file = new File("bswanepo/src/main/resources/characters/Heroes.txt");
 
             if (file != null) {
                 final Scanner fileReader = new Scanner(file);

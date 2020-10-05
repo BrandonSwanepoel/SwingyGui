@@ -45,8 +45,6 @@ public class Display {
 		panelCont = new JPanel();
 		menuCharacterPanel = new JPanel();
 		selectCharacterPanel = new JPanel();
-		
-		
 
 		panelCont.setLayout(cl);
 		panelCont.addKeyListener(keyManager);
@@ -61,17 +59,9 @@ public class Display {
 		menuCharacterPanel = characterMenu;
 		panelCont.add(menuCharacterPanel, "menuCharacterPanel");
 
-		// SelectCharacterPanel selectCharacter = new SelectCharacterPanel(width, height);
-		// selectCharacterPanel = selectCharacter;
-		// panelCont.add(selectCharacterPanel, "selectCharacterPanel");
-
 		CreateCharacterPanel createCharacter = new CreateCharacterPanel(width, height);
 		createCharacterPanel = createCharacter;
 		panelCont.add(createCharacterPanel, "createCharacterPanel");
-
-		// HeroCreatedPanel HeroCreated = new HeroCreatedPanel(width, height);
-		// heroCreatedPanel = HeroCreated;
-		// panelCont.add(heroCreatedPanel, "heroCreatedPanel");
 
 		frame = new JFrame();
 		frame.setSize(width, height);
@@ -86,12 +76,9 @@ public class Display {
 		mainGamePanel.setMinimumSize(new Dimension(width, height));
 		mainGamePanel.setBackground(Color.black);
 		canvas = new Canvas();
-		// setCanvas();
 		
 		panelCont.add(canvas, "Game");
 		frame.add(panelCont);
-		
-
 		frame.pack();
 	}
 

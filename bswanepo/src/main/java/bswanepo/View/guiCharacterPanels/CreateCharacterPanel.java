@@ -18,7 +18,7 @@ public class CreateCharacterPanel extends JPanel {
      */
     private static final long serialVersionUID = 1L;
     private String classField = null;
-    public JComboBox petList;
+    public JComboBox<String> petList;
     private Handler handler = Launcher.handler;
 
     public CreateCharacterPanel(int canvasWidth, int canvasHeight) {
@@ -45,7 +45,7 @@ public class CreateCharacterPanel extends JPanel {
         panel.add(new JLabel("Hero Class:", JLabel.RIGHT));
         String[] classStrings = { "Wizard", "Warrior", "Lazy", "Hunter", "Class type" };
 
-        petList = new JComboBox(classStrings);
+        petList = new JComboBox<>(classStrings);
         panel.add(petList);
         petList.setSelectedIndex(4);
 
@@ -58,6 +58,11 @@ public class CreateCharacterPanel extends JPanel {
             }
         });
         JScrollPane jsp = new JScrollPane(panel) {
+            /**
+             *
+             */
+            private static final long serialVersionUID = 1L;
+
             @Override
             public Dimension getPreferredSize() {
                 return new Dimension(canvasWidth - 10, (canvasHeight / 2) / 2);

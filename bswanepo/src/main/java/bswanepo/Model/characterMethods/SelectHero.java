@@ -5,27 +5,18 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.validation.constraints.NotBlank;
-
 import bswanepo.Model.Model;
 
 public class SelectHero extends Model {
     
-    public static ArrayList<String> selectHero(@NotBlank String heroName) {
-        // Set<ConstraintViolation<SelectCharacterPanel>> constraintViolations =
-        // validator.validate( heroName );
-
-        // assertEquals( 1, constraintViolations.size() );
-        // assertEquals(
-        // "size must be between 2 and 14",
-        // constraintViolations.iterator().next().getMessage()
-        // );
+    public static ArrayList<String> selectHero(String heroName) {
+       
         if (hero != null) {
             hero.clear();
         }
         // InputStream inputStream = LobbyModel.class.getClassLoader().getResourceAsStream("characters/Heroes.txt");
-        // final File file = new File("src/main/resources/characters/Heroes.txt");
-        final File file = new File("bswanepo/src/main/resources/characters/Heroes.txt");
+        final File file = new File("src/main/resources/characters/Heroes.txt");
+        // final File file = new File("bswanepo/src/main/resources/characters/Heroes.txt");
 
 
         Scanner fileReader;
