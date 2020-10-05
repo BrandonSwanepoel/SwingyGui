@@ -36,7 +36,6 @@ public class GetVillain extends Model{
 
                                 while (!data.equals("") && fileReader.hasNextLine()) {
                                     villain.add(data);
-
                                     data = fileReader.nextLine();
                                 }
                                 fileReader.close();

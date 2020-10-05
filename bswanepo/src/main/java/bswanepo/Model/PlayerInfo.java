@@ -7,10 +7,6 @@ import javax.validation.constraints.*;
 // import javax.persistence.Entity;
 // @Entity
 public class PlayerInfo{
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
     
     @NotNull
     private String name;

@@ -43,6 +43,7 @@ public class GamePlay extends Model implements Actionable {
                 villainStats.add(Integer.parseInt(tmp[1]));
             } else {
                 villainStats.add(Integer.parseInt(tmp[1]));
+                System.out.println(tmp);
             }
 
         }
@@ -148,8 +149,9 @@ public class GamePlay extends Model implements Actionable {
                             }
 
                         }
+                        if (fileReader.hasNextLine()) {
                         writer.println(data);
-
+                        }
                         writer.close();
 
                     } catch (final IOException e1) {
@@ -212,7 +214,7 @@ public class GamePlay extends Model implements Actionable {
                     while (fileReader.hasNextLine()) {
 
                         if (data.equals(heroName)) {
-                            for(int i = 0;i < 10;i++){
+                            for(int i = 1;i < 9;i++){
                                
                                 if (data.contains(stats)) {
                                     final String[] value = data.split(" ");

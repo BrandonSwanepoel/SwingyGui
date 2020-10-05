@@ -22,6 +22,7 @@ public class AmountOfCharacters extends Model {
                 }
             }
         }
+
         fileReader.close();
 
     } catch (FileNotFoundException e) {

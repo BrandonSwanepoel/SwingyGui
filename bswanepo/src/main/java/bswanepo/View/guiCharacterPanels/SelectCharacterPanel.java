@@ -12,6 +12,8 @@ import javax.swing.border.*;
 import bswanepo.Launcher;
 import bswanepo.Controller.Handler;
 import bswanepo.Controller.guiGame.gfx.Assets;
+import bswanepo.Model.Model;
+import bswanepo.Model.characterMethods.GetAllHeroes;
 import bswanepo.View.display.Display;
 import java.util.ArrayList;
 import static javax.swing.JOptionPane.*;
@@ -51,7 +53,7 @@ public class SelectCharacterPanel extends JPanel {
 
         JPanel selectPanel = new JPanel();
         assets = new Assets();
-        entries = assets.loadCharactersNames();
+        entries = Model.heroNames;
         arrayEntities = new String[entries.size()];
         int i = 0;
         for (String heroes : entries) {

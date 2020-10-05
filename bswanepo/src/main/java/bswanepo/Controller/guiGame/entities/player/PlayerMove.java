@@ -68,7 +68,7 @@ public abstract class PlayerMove extends Entity {
 					pickedOption = PopUpMessages.fight(i, villainRowInteger);
 					if (pickedOption.equals("Fight")) {
 
-						PlayerMove.gameOutCome = gamePlay.fight(PlayerMove.landedOnVillain, Model.hero);
+						PlayerMove.gameOutCome = gamePlay.fight(PlayerMove.landedOnVillain, Launcher.handler.getPlayerInfo().getPlayer());
 						// dialog.setVisible(false);
 						if (PlayerMove.gameOutCome[0] == "Winner") {
 							PopUpMessages.fightWon();
@@ -113,12 +113,13 @@ public abstract class PlayerMove extends Entity {
 							Entity.x -= PlayerMove.xMove;
 							Entity.y -= PlayerMove.yMove;
 							i = Model.villainRowValues.size();
+							break;
 
 						} else if (runResult == false) {
 							pickedOption = PopUpMessages.unluckyYouMustFight();
 							if (pickedOption.equals("okay")) {
 
-								PlayerMove.gameOutCome = gamePlay.fight(PlayerMove.landedOnVillain, Model.hero);
+								PlayerMove.gameOutCome = gamePlay.fight(PlayerMove.landedOnVillain,  Launcher.handler.getPlayerInfo().getPlayer());
 
 								if (PlayerMove.gameOutCome[0] == "Winner") {
 

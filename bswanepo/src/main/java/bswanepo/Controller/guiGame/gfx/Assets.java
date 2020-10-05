@@ -1,15 +1,17 @@
 package bswanepo.Controller.guiGame.gfx;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 
+import bswanepo.Model.characterMethods.GetAllHeroes;
 import bswanepo.Model.gameMethods.Utils;
-
-
 
 public class Assets {
 
@@ -52,41 +54,44 @@ public class Assets {
 		westFinishGrass = sheet.crop(0, 0, width, height);
 	}
 
-	public ArrayList<String> loadCharactersNames() {
-		ArrayList<String> file = Utils
-				.loadFileAsString(getClass().getClassLoader().getResourceAsStream("characters/Heroes.txt"));
+	
 
-		ArrayList<String> heroNames = new ArrayList<>();
-		for (int i = 0; i < file.size(); i++) {
-			if (i == 0) {
-				heroNames.add(file.get(i));
-			} else if (file.get(i).isEmpty()) {
-				i++;
-				heroNames.add(file.get(i));
-				if(i == (file.size())-10){
-					break;
-				}
-
-			}
-		}
-		return heroNames;
-	}
 
 	public String loadCharactersSpecs(String name) {
-		ArrayList<String> file = Utils
-				.loadFileAsString(getClass().getClassLoader().getResourceAsStream("characters/Heroes.txt"));
+		final File file = new File("src/main/resources/characters/Heroes.txt");
+		// ArrayList<String> file = Utils
+		// 		.loadFileAsString(getClass().getClassLoader().getResourceAsStream("characters/Heroes.txt"));
 
 		String heroSpecs = "";
-		for (int i = 0; i < file.size(); i++) {
-			if (file.get(i).equals(name)) {
-				i++;
-				for (int j = 0; j < 8; j++) {
-					heroSpecs += file.get(i) + "\n";
-					i++;
+		Scanner fileReader;
+		try {
+			fileReader = new Scanner(file);
+			if (fileReader != null) {
+				// final Scanner fileReader = new Scanner(file);
+				while (fileReader.hasNext()) {
+					String data = fileReader.nextLine();
+			if (data.equals(name)) {
+				while (!data.equals("") || data != null){
+					heroSpecs += data+ "\n";
+					if(!data.contains("Helm")){
+						data = fileReader.nextLine();
+
+					}else{
+						break;
+					}
+
 				}
 			}
 		}
-		return heroSpecs;
-	}
+	fileReader.close();
 
-}
+	
+	}} catch (FileNotFoundException e) {
+		e.printStackTrace();
+	}
+	return heroSpecs;
+	
+
+
+
+}}

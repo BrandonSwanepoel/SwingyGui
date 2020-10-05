@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>bswanepo</groupId>
-    <artifactId>Swingy</artifactId>
-    <version>-</version>
+    <artifactId>swingy</artifactId>
+    <version>1.0</version>
     <!-- <packaging>jar</packaging> -->
 
     <name>Swingy</name>
@@ -16,111 +16,81 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <dependencies>
-      <!-- <dependency>
-        <groupId>javax</groupId>
-        <artifactId>javaee-web-api</artifactId>
-        <version>7.0</version>
-         <scope>provided</scope> -->
-    <!-- </dependency> -->
-    <!-- <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-validator</artifactId>
-      <version>5.3.4.Final</version>
-    </dependency> -->
-    <!-- <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-validator</artifactId>
-      <version>5.3.4.Final</version>
-    </dependency> -->
-    <!-- <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-      <version>1.1.0.Final</version>
-  </dependency> -->
-  
-    <!-- <dependency>
-      <groupId>javax.el</groupId>
-      <artifactId>javax.el-api</artifactId>
-      <version>2.2.4</version>
-    </dependency> -->
-    <!-- <dependency>
-      <groupId>org.glassfish.web</groupId>
-      <artifactId>javax.el</artifactId>
-      <version>2.2.4</version>
-    </dependency> -->
-
-   
-  <!-- </dependency>
-    <dependency>
-      <groupId>org.glassfish</groupId>
-      <artifactId>jakarta.el</artifactId>
-      <version>3.0.3</version>
-  </dependency>
-    <dependency>
-      <groupId>org.hibernate.validator</groupId>
-      <artifactId>hibernate-validator-cdi</artifactId>
-      <version>6.1.5.Final</version>
-  </dependency>
- 
-    <dependency>
-      <groupId>org.hibernate.validator</groupId>
-      <artifactId>hibernate-validator-modules</artifactId>
-      <version>6.1.5.Final</version>
-      <classifier>wildfly-19.0.0.Final-patch</classifier>
-      <type>zip</type>
-  </dependency> -->
-      <!-- <dependency>
-        <groupId>org.hibernate.validator</groupId>
-        <artifactId>hibernate-validator-modules</artifactId>
-        <version>6.1.5.Final</version>
-        <classifier>wildfly-18.0.1.Final-patch</classifier>
-        <type>zip</type>
-    </dependency> -->
-    <!-- <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-      <version>1.0.0.GA</version>
-  </dependency> -->
-   
-  <!-- <dependency>
-    <groupId>org.hibernate.validator</groupId>
-    <artifactId>hibernate-validator-cdi</artifactId>
-    <version>6.1.5.Final</version>
-</dependency> -->
      <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.5</version>
     </dependency>
     <dependency>
-      <groupId>org.hibernate.validator</groupId>
-      <artifactId>hibernate-validator</artifactId>
-      <version>6.0.16.Final</version>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>2.0.1.Final</version>
   </dependency>
-  
-
-    
-
-
-
+  <dependency>
+       <groupId>org.hibernate</groupId>
+       <artifactId>hibernate-validator</artifactId>
+       <version>6.1.5.Final</version>
+  </dependency>
+  <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator-annotation-processor</artifactId>
+      <version>6.1.5.Final</version>
+  </dependency>
+  <dependency>
+      <groupId>javax.el</groupId>
+      <artifactId>javax.el-api</artifactId>
+      <version>3.0.0</version>
+  </dependency>
+  <dependency>
+      <groupId>org.glassfish.web</groupId>
+      <artifactId>javax.el</artifactId>
+      <version>2.2.6</version>
+  </dependency>
 	</dependencies>
-        
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-dependency-plugin</artifactId>
+              <version>2.10</version>
+              <executions>
+                  <execution>
+                      <id>copy-dependencies</id>
+                      <phase>prepare-package</phase>
+                      <goals>
+                          <goal>copy-dependencies</goal>
+                      </goals>
+                      <configuration>
+                          <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                          <overWriteReleases>false</overWriteReleases>
+                          <overWriteSnapshots>false</overWriteSnapshots>
+                          <overWriteIfNewer>true</overWriteIfNewer>
+                      </configuration>
+                  </execution>
+              </executions>
+          </plugin>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-jar-plugin</artifactId>
+              <version>2.6</version>
+              <configuration>
                   <archive>
-                    <manifest>
-                      <addClasspath>true</addClasspath>
-                      <!-- <classpathPrefix></classpathPrefix> -->
-                      <mainClass>bswanepo.Launcher</mainClass>
-                    </manifest>
+                      <manifest>
+                          <addClasspath>true</addClasspath>
+                          <classpathPrefix>lib/</classpathPrefix>
+                          <mainClass>bswanepo.Launcher</mainClass>
+                      </manifest>
                   </archive>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+              </configuration>
+          </plugin>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                  <source>1.8</source>
+                  <target>1.8</target>
+              </configuration>
+          </plugin>
+      </plugins>
+  </build>
 </project>

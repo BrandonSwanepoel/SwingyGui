@@ -15,7 +15,9 @@ public class GetAllHeroes extends Model{
         String data;
         ArrayList<String[]> heroes = new ArrayList<>();
         // hero.clear();
-
+        if(!heroNames.equals(null)){
+            heroNames.clear();
+        }
         // InputStream inputStream = LobbyModel.class.getClassLoader().getResourceAsStream("characters/Heroes.txt");
         final File file = new File("src/main/resources/characters/Heroes.txt");
         // final File file = new File("bswanepo/src/main/resources/characters/Heroes.txt");
@@ -28,22 +30,25 @@ public class GetAllHeroes extends Model{
             fileReader = new Scanner(file);
         
 
-        // fileReader = new Scanner(inputStream).useDelimiter("\\A");
         if (fileReader != null) {
             for (int heroPosition = 0; heroPosition <= amountOfCharacters; heroPosition++) {
                 int i = 0;
-                String[] heroTmp = new String[9];
+                String[] heroTmp = new String[10];
                 while (fileReader.hasNext()) {
+                   
                     data = fileReader.nextLine();
-
+                    if(i == 0){
+                        Model.heroNames.add(data);
+                    }
                     if (data.equals("")) {
                         break;
                     } else {
                         heroTmp[i] = data;
-                        if(i != 8)
+                        if(i < 9)
                             i++;
 
                     }
+                    
                 }
                 heroes.add(heroTmp);
             }

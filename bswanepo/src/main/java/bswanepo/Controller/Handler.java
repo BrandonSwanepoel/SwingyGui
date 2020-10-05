@@ -23,7 +23,7 @@ import bswanepo.Model.*;
 import static org.junit.Assert.assertEquals;
 
 public class Handler {
-	
+
 	private Game game;
 	private World world;
 	private Menu menu;
@@ -73,11 +73,10 @@ public class Handler {
 
 		Model.hero = SelectHero.selectHero(heroName);
 		ArrayList<String> hero = Model.hero;
-		
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		Validator validator = factory.getValidator();
 		playerInfo = new PlayerInfo(hero.get(0), hero.get(1), hero.get(2), hero.get(3), hero.get(4), hero.get(5),
 				hero.get(6), hero.get(7), hero.get(8), hero.get(9));
-				ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-	Validator validator = factory.getValidator();
 		Set<ConstraintViolation<PlayerInfo>> constraintViolations = validator.validate(playerInfo);
 
 		if (constraintViolations.size() == 1) {

@@ -8,7 +8,8 @@ import bswanepo.Model.gameMethods.Utils;
 
 public class Model {
     public static ArrayList<String> hero = new ArrayList<>();
-    public static ArrayList<String[]> heroes = new ArrayList<>();
+	public static ArrayList<String[]> heroes = new ArrayList<>();
+	public static ArrayList<String> heroNames = new ArrayList<>();
     public static String heroLvl = null;
     public static ArrayList<String> artifact = new ArrayList<>();
 

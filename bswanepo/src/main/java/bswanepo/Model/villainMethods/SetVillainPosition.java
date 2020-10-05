@@ -90,16 +90,17 @@ public class SetVillainPosition extends Model{
     }
 
     public static ArrayList<String> fillVillainPlaces(String gameType) {
-        final String[] level = Model.hero.get(2).split(" ");
+
+        final String[] level = Launcher.handler.getPlayerInfo().getLevel().split(" ");
         final int mapSize = (Integer.parseInt(level[1]) - 1) * 5 + 10 - (Integer.parseInt(level[1]) % 2);
         final ArrayList<String> items = new ArrayList<>();
 
         for (int i = 0; i < mapSize; i++) {
 
             if (i * 64 < mapSize * 64 && i != mapSize / 2 && i != 0 && i != mapSize) {
-                if (gameType == "gui") {
+                if (gameType.equals("gui")) {
                     items.add(String.valueOf(i * PlayerMove.DEFAULT_CREATURE_WIDTH));
-                } else if (gameType == "console") {
+                } else if (gameType.equals("console")) {
                     items.add(String.valueOf(i));
                 }
             }

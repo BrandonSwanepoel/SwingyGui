@@ -15,6 +15,8 @@ import java.awt.Font;
 import bswanepo.Controller.Handler;
 import bswanepo.Controller.guiGame.guiGamePanels.Game;
 import bswanepo.Controller.guiGame.guiGamePanels.Menu;
+import bswanepo.Model.Model;
+import bswanepo.Model.characterMethods.GetAllHeroes;
 import bswanepo.View.display.Display;
 
 public class MainCharacterPanel extends JPanel {
@@ -49,6 +51,7 @@ public class MainCharacterPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                
+                Model.heroes = GetAllHeroes.getAllHeroes();
                 selectCharacterPanel = new SelectCharacterPanel(canvasWidth, canvasHeight);
                 
                 Menu.display.setPanelCont(selectCharacterPanel, "selectCharacterPanel" );

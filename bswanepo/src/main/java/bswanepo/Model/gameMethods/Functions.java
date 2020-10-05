@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import bswanepo.Launcher;
 import bswanepo.Controller.guiGame.gfx.Assets;
+import bswanepo.Model.Model;
 
 public class Functions {
 
@@ -29,7 +30,7 @@ public class Functions {
     public boolean checkCharacterName(String newName) {
 
         Assets assets = new Assets();
-        ArrayList<String> entries = assets.loadCharactersNames();
+        ArrayList<String> entries = Model.heroNames;
         newName = newName.toLowerCase();
 
         for (String name : entries) {
