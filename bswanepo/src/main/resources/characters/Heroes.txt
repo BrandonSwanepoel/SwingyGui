@@ -1,7 +1,7 @@
 CrazyGuyJoe
 Class Tank
-Level 3
-XP 3100
+Level 1
+XP 900
 Attack 25
 Defense 10
 Hit Points 45
@@ -11,25 +11,14 @@ Helm 10
 
 i
 Class Wizard
-Level 2
-XP 1600
+Level 1
+XP 900
 Attack 530
 Defense 555
 Hit 505
 Weapons 1
 Armor 2
 Helm 1
-
-awe
-Class Wizard
-Level 1
-XP 0
-Attack 10
-Defense 10
-Hit Points 10
-Weapons 10
-Armor 10
-Helm 10
 
 ouman
 Class Warrior
@@ -38,28 +27,6 @@ XP 200
 Attack 10
 Defense 15
 Hit Points 10
-Weapons 10
-Armor 10
-Helm 10
-
-p
-Class Lazy
-Level 1
-XP 100
-Attack 10
-Defense 10
-Hit Points 10
-Weapons 10
-Armor 10
-Helm 10
-
-piepie
-Class Tank
-Level 1
-XP 400
-Attack 10
-Defense 10
-Hit 15
 Weapons 10
 Armor 10
 Helm 10
